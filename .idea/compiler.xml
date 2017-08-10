@@ -9,8 +9,8 @@
         <module name="QueueManager_SAP" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="QueueManager_SAP" target="1.5" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="QueueManager_SAP" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
