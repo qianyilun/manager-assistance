@@ -42,25 +42,22 @@ public class Main {
     public static void main(String[] args) {
         String key = "webdriver.chrome.driver";
         String value = getOSValue();
-        String url = "https://support.wdf.sap.corp/sap/bc/devdb/saved_search?sap-client=001&search_id=0090FAE68C221ED78F8482FB683BC0CB&format=json";
+        String url = "https://support.wdf.sap.corp/sap/bc/devdb/saved_search?sap-client=001&search_id=0090FAE68C221ED78F84917FE2FBA0CB&format=json";
 
         System.setProperty(key, value);
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(url);
 
-        System.out.println(driver.getPageSource());
-/*
-        Document doc;
-        try {
-            Thread.sleep(2000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        String pageSource = driver.getPageSource();
+        int beginIndex = pageSource.indexOf('{') + 9;
+        int endIndex = pageSource.indexOf('}');
 
-        // https://stackoverflow.com/questions/562160/in-java-how-do-i-parse-xml-as-a-string-instead-of-a-file
+        String JSONsource = pageSource.substring(beginIndex, endIndex);
+        System.out.println(pageSource);
+
+/*
         try {
-            doc = loadXMLFromString(driver.getPageSource());
 
             // read XML from File
 //            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
