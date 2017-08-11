@@ -50,10 +50,15 @@ public class Main {
         driver.get(url);
 
         String pageSource = driver.getPageSource();
-        int beginIndex = pageSource.indexOf('{') + 9;
-        int endIndex = pageSource.indexOf('}');
 
-        String JSONsource = pageSource.substring(beginIndex, endIndex);
+
+//        -------------------------------------------------
+        
+
+        int beginIndex = pageSource.indexOf('{') + 9;
+        int endIndex = pageSource.lastIndexOf('}');
+
+        String JsonSource = pageSource.substring(beginIndex, endIndex);
         System.out.println(pageSource);
 
 /*
