@@ -9,7 +9,7 @@ import com.allen.model.DATA;
  */
 public class MainParser
 {
-    private com.allen.model.DATA[] DATA;
+    private DATA[] DATA;
 
     public DATA[] getDATA ()
     {
