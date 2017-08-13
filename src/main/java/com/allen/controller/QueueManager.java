@@ -1,6 +1,7 @@
 package com.allen.controller;
 
 import com.allen.model.DATA;
+import com.allen.model.JsonSaver;
 import com.allen.model.TestJSON;
 import com.google.gson.Gson;
 
@@ -8,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -44,15 +46,19 @@ public class QueueManager {
         jsonSourceCode = TestJSON.pageSource;
         incidentsInfo = parseJson(TestJSON.pageSource).getDATA();
 
+        // --------- Sort 'incidents' by IRT_EXPIRE date
+//        Arrays.sort(incidentsInfo);
+
     // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
 
 
         // --------- Save String to JSON file as the backup ----------
-        saveJsonFile(JsonStringFormatter.prettyJsonFormat(jsonSourceCode));
+        JsonSaver.save(JsonStringFormatter.prettyJsonFormat(jsonSourceCode));
 
         // --------- Manipulate the incident_info ---------
         for (DATA data : incidentsInfo) {
-            System.out.println(data.getIRT_EXPIRY());
+            data.printIRTObject();
+//            System.out.println(data.getIRT_EXPIRY());
         }
 
     }
@@ -63,26 +69,5 @@ public class QueueManager {
         return mainParser;
     }
 
-    // https://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
-    private void saveJsonFile(String formattedJson) {
-        BufferedWriter writer = null;
-        try {
-            writer = new BufferedWriter( new FileWriter("history.json"));
-            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
-            writer.write("//Captured by " + timeStamp + "\n" + formattedJson);
 
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
 }
