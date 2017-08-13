@@ -4,6 +4,12 @@ import com.allen.model.DATA;
 import com.allen.model.TestJSON;
 import com.google.gson.Gson;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by yilunq on 12/08/17.
  *
@@ -20,25 +26,31 @@ public class QueueManager {
     }
 
     public void run() {
+        String jsonSourceCode;
         /* ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
         cc = new ConnectionConfiguration(queueID);
         cc.connect();
 
         // --------- Get 'incidents' in JsonObject via BCP -------
-        incidentsInfo = parseJson(cc.getJsonSourceCode()).getDATA();
+        jsonSourceCode = cc.getJsonSourceCode();
+        incidentsInfo = parseJson(jsonSourceCode).getDATA();
 
         */ ////////////////////////////////////////////////////////////////////
 
     // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
 
         // --------- Get 'incidents' in Test raw Json String ---------
+        jsonSourceCode = TestJSON.pageSource;
         incidentsInfo = parseJson(TestJSON.pageSource).getDATA();
 
     // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
 
 
+        // --------- Save String to JSON file as the backup ----------
+        saveJsonFile(JsonStringFormatter.prettyJsonFormat(jsonSourceCode));
 
+        // --------- Manipulate the incident_info ---------
         for (DATA data : incidentsInfo) {
             System.out.println(data.getIRT_EXPIRY());
         }
@@ -51,7 +63,26 @@ public class QueueManager {
         return mainParser;
     }
 
+    // https://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
     private void saveJsonFile(String formattedJson) {
-        
+        BufferedWriter writer = null;
+        try {
+            writer = new BufferedWriter( new FileWriter("history.json"));
+            String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
+            writer.write("//Captured by " + timeStamp + "\n" + formattedJson);
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
