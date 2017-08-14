@@ -1,5 +1,9 @@
 package com.allen.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by yilunq on 12/08/17.
  *
@@ -24,6 +28,34 @@ public class IRT {
         date = Integer.parseInt(irt.substring(4,8));
         hour = Integer.parseInt(irt.substring(8,10));
         minute = Integer.parseInt(irt.substring(10,12));
+    }
+
+    public boolean isValidIRT() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String currentDate = dateFormat.format(new Date());
+
+        IRT now = new IRT(currentDate);
+
+        if (now.getYear() > year) {
+            return false;
+        }
+        if (now.getYear() == year) {
+            if (now.getDate() > date) {
+                return false;
+            }
+            if (now.getDate() == date) {
+                if (now.getHour() > hour) {
+                    return false;
+                }
+                if (now.getHour() == hour) {
+                    if (now.getMinute() > minute) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+
     }
 
     public int getYear() {

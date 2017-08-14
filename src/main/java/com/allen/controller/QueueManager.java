@@ -1,6 +1,7 @@
 package com.allen.controller;
 
 import com.allen.model.DATA;
+import com.allen.model.IRT;
 import com.allen.model.JsonSaver;
 import com.allen.model.TestJSON;
 import com.google.gson.Gson;
@@ -56,10 +57,11 @@ public class QueueManager {
 
         // --------- Manipulate the incident_info ---------
         for (DATA data : incidentsInfo) {
-            data.printIRTObject();
-//            System.out.println(data.getIRT_EXPIRY());
+            IRT irt = new IRT(data.getIRT_EXPIRY());
+            if (irt.isValidIRT()) {
+                System.out.println(irt);
+            }
         }
-
     }
 
     private MainParser parseJson(String jsonString) {
