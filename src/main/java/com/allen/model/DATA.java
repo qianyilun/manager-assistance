@@ -689,6 +689,15 @@ public class DATA implements Comparable<DATA>{
         System.out.println(irt);
     }
 
+    // if the IRT shows 'OK' --> invalid
+    // if the IRT shows traffic light --> valid
+    public boolean hasValidIRT() {
+        if (LAST_CHANGED_AT_SAP.equals("0")) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int compareTo(DATA data) {
         IRT thisIRT = new IRT(IRT_EXPIRY);

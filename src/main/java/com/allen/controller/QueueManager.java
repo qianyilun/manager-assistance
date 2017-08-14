@@ -58,8 +58,10 @@ public class QueueManager {
         // --------- Manipulate the incident_info ---------
         for (DATA data : incidentsInfo) {
             IRT irt = new IRT(data.getIRT_EXPIRY());
-            if (irt.isValidIRT()) {
+
+            if (data.hasValidIRT()) {
                 System.out.println(irt);
+                System.out.println(data.getLAST_CHANGED_AT_SAP());
             }
         }
     }

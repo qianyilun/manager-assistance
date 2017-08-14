@@ -30,7 +30,7 @@ public class IRT {
         minute = Integer.parseInt(irt.substring(10,12));
     }
 
-    public boolean isValidIRT() {
+    public boolean isExpire() {
         DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
         String currentDate = dateFormat.format(new Date());
 
@@ -55,7 +55,6 @@ public class IRT {
             }
         }
         return true;
-
     }
 
     public int getYear() {
