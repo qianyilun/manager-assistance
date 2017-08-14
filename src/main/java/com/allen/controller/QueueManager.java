@@ -41,16 +41,15 @@ public class QueueManager {
         */ ////////////////////////////////////////////////////////////////////
 
     // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
-
+                                                                            //**
         // --------- Get 'incidents' in Test raw Json String ---------
         jsonSourceCode = TestJSON.pageSource;
         incidentsInfo = parseJson(TestJSON.pageSource).getDATA();
-
-        // --------- Sort 'incidents' by IRT_EXPIRE date
-//        Arrays.sort(incidentsInfo);
-
     // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
 
+
+        // --------- Sort 'incidents' by IRT_EXPIRE date
+        Arrays.sort(incidentsInfo);
 
         // --------- Save String to JSON file as the backup ----------
         JsonSaver.save(JsonStringFormatter.prettyJsonFormat(jsonSourceCode));
@@ -68,6 +67,4 @@ public class QueueManager {
         MainParser mainParser = gson.fromJson(jsonString, MainParser.class);
         return mainParser;
     }
-
-
 }
