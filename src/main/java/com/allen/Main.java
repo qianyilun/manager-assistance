@@ -35,7 +35,7 @@ public class Main {
             }
         };
 
-        // note, period should 15 mins
+        // note, period should be 15 mins
         timer.schedule(task, 0, 5000);
     }
 }
