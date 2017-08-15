@@ -57,6 +57,24 @@ public class IRT {
         return true;
     }
 
+    // same day but is about expiring
+    // pre-request: minutesLeft between 1 and 59
+    public boolean isLessThan (int minutesLeft) {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String currentDate = dateFormat.format(new Date());
+
+        IRT now = new IRT(currentDate);
+
+        if (now.getYear() == year && now.getDate() == date
+                && now.getHour() == now.getHour()) {
+            if (minute - now.getMinute() < minutesLeft) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
     public int getYear() {
         return year;
     }
