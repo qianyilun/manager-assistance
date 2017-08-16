@@ -1,9 +1,6 @@
 package com.allen.controller;
 
-import com.allen.model.DATA;
-import com.allen.model.IRT;
-import com.allen.model.JsonSaver;
-import com.allen.model.TestJSON;
+import com.allen.model.*;
 import com.google.gson.Gson;
 
 import java.io.BufferedWriter;
@@ -22,6 +19,7 @@ public class QueueManager {
     private String queueID;
     private DATA[] incidentsInfo;
     private ConnectionConfiguration cc;
+    EmergeQueueList emergeQueueList;
 
 
     public QueueManager(String queueID) {
@@ -29,6 +27,7 @@ public class QueueManager {
     }
 
     public void run() {
+        emergeQueueList = new EmergeQueueList();
         String jsonSourceCode;
         /* ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
@@ -41,12 +40,12 @@ public class QueueManager {
 
         */ ////////////////////////////////////////////////////////////////////
 
-    // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
+    // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
         // --------- Get 'incidents' in Test raw Json String ---------
         jsonSourceCode = TestJSON.pageSource;
-        incidentsInfo = parseJson(TestJSON.pageSource).getDATA();
-    // ***** TEST ONLY ************** PREPARE TO DELETE ***********************
+        incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
+    // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
 
 
         // --------- Sort 'incidents' by IRT_EXPIRE date
@@ -60,10 +59,18 @@ public class QueueManager {
             IRT irt = new IRT(data.getIRT_EXPIRY());
 
             if (data.hasValidIRT()) {
-                System.out.println(irt);
-                System.out.println(data.getLAST_CHANGED_AT_SAP());
+                if (irt.isLessThan(30)) {
+                    emergeQueueList.addIncidentToArray(data);
+                } else if (irt.isLessThan(45)) {
+                    // launch the view
+                }
             }
         }
+
+        if (emergeQueueList.getLst() != null) {
+            // launch the view
+        }
+        System.out.println(emergeQueueList.getLst().get(0).getIRT_EXPIRY());
     }
 
     private MainParser parseJson(String jsonString) {
