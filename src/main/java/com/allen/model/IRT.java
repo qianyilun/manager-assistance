@@ -44,10 +44,11 @@ public class IRT {
                 return false;
             }
             if (now.getDate() == date) {
-                if (now.getHour() > hour) {
+                // System's 19 hour = 12PST
+                if (now.getHour()+7 > hour) {
                     return false;
                 }
-                if (now.getHour() == hour) {
+                if (now.getHour()+7 == hour) {
                     if (now.getMinute() > minute) {
                         return false;
                     }
@@ -66,8 +67,8 @@ public class IRT {
         IRT now = new IRT(currentDate);
 
         if (now.getYear() == year && now.getDate() == date
-                && now.getHour() == now.getHour()) {
-            if (minute - now.getMinute() < minutesLeft) {
+                && now.getHour() + 7 == hour) { // System's 19 hour = 12PST
+            if (minute - now.getMinute() <= minutesLeft) {
                 return true;
             }
         }
