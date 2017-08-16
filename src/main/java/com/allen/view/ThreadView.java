@@ -10,6 +10,6 @@ import com.allen.model.DATA;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ThreadView implements Runnable{
+public class ThreadView extends Applicaiton implements Runnable{
     List<DATA> lst = new ArrayList<>();
 }
