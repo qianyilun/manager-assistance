@@ -2,6 +2,7 @@ package com.allen;
 
 import com.allen.controller.QueueManager;
 import com.allen.view.StartPage;
+import com.allen.view.StartPageNew;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,8 +29,9 @@ public class Main {
 
     public static void start(String queueID) {
         // display welcome start page
-        StartPage sp = new StartPage();
-        sp.display();
+        StartPageNew sp = new StartPageNew();
+
+//        sp.display();
 
         timer = new Timer();
         task = new TimerTask() {
