@@ -58,6 +58,7 @@ public class QueueManager {
         for (DATA data : incidentsInfo) {
             IRT irt = new IRT(data.getIRT_EXPIRY());
 
+            System.out.println(irt);
             if (data.hasValidIRT()) {
                 if (irt.isLessThan(30)) {
                     emergeQueueList.addIncidentToArray(data);
@@ -70,7 +71,7 @@ public class QueueManager {
         if (emergeQueueList.getLst() != null) {
             // launch the view
         }
-        System.out.println(emergeQueueList.getLst().get(0).getIRT_EXPIRY());
+//        System.out.println(emergeQueueList.getLst().get(0).getIRT_EXPIRY());
     }
 
     private MainParser parseJson(String jsonString) {
