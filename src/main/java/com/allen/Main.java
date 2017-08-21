@@ -1,8 +1,9 @@
 package com.allen;
 
 import com.allen.controller.QueueManager;
-import com.allen.view.StartPage;
-import com.allen.view.StartPageNew;
+import com.allen.view.single_dialog.SingleDialog;
+import com.allen.view.single_dialog.SingleDialogNew;
+import com.allen.view.start_page.StartPageNew;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -31,7 +32,7 @@ public class Main {
         // display welcome start page
         StartPageNew sp = new StartPageNew();
 
-//        sp.display();
+        SingleDialogNew singleDialog = new SingleDialogNew();
 
         timer = new Timer();
         task = new TimerTask() {
@@ -43,6 +44,6 @@ public class Main {
         };
 
         // note, period should be 15 mins
-        timer.schedule(task, 0, 5000);
+//        timer.schedule(task, 0, 5000);
     }
 }

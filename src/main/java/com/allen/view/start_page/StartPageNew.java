@@ -8,7 +8,7 @@
 
 // Please note: 	if pack() method is used, setLocationRelativeTo should be used after pack() method call –
 
-package com.allen.view;
+package com.allen.view.start_page;
 
 import java.awt.*;
 import java.awt.event.*;
