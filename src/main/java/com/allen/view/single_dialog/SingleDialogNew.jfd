@@ -1,0 +1,99 @@
+JFDML JFormDesigner: "6.0.2.0.116" Java: "1.8.0_152-release" encoding: "UTF-8"
+
+new FormModel {
+	contentType: "form/swing"
+	root: new FormRoot {
+		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class java.awt.BorderLayout ) ) {
+			name: "frame"
+			"visible": true
+			"title": "Reminder"
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) {
+				"vgap": 53
+			} ) {
+				name: "topPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "Title"
+					"text": "__default__"
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "North"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
+				"$horizontalGroup": "par l {seq l {space :p:114:p, comp openLinkBtn:::p::p, space ::572:x, comp closeBtn:::p::p, space :p:82:p, comp sendEmailBtn:::p::p, space :p:62:p, comp RemindLaterBtn:::p::p, space :p:124:p}}"
+				"$verticalGroup": "par l {seq t {space ::31:x, par b {comp RemindLaterBtn::b:p::p, comp sendEmailBtn::b:p::p, comp closeBtn::b:p::p, comp openLinkBtn::b:p::p}, space :p:22:p}}"
+			} ) {
+				name: "buttomPanel"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "openLinkBtn"
+					"text": "Open the Link"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "openLinkBtnActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "closeBtn"
+					"text": "Dismiss"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "closeBtnActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "sendEmailBtn"
+					"text": "Send email now"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "sendEmailBtnActionPerformed", true ) )
+				} )
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "RemindLaterBtn"
+					"text": "Remind me Later"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "RemindLaterBtnActionPerformed", true ) )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "South"
+			} )
+			add( new FormContainer( "javax.swing.JScrollPane", new FormLayoutManager( class javax.swing.JScrollPane ) ) {
+				name: "centerPane"
+				add( new FormComponent( "javax.swing.JTree" ) {
+					name: "treeView"
+					"model": new javax.swing.tree.DefaultTreeModel( new javax.swing.tree.DefaultMutableTreeNode {
+						userObject: "The incident <_ID__> is about expire within __ mins."
+						add( new javax.swing.tree.DefaultMutableTreeNode {
+							userObject: "ID:"
+						} )
+						add( new javax.swing.tree.DefaultMutableTreeNode {
+							userObject: "Title:"
+						} )
+						add( new javax.swing.tree.DefaultMutableTreeNode {
+							userObject: "Pecent:"
+						} )
+						add( new javax.swing.tree.DefaultMutableTreeNode {
+							userObject: "Link:"
+						} )
+					} )
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "Center"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 1
+			} ) {
+				name: "leftPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "leftLabelHelper"
+					"text": "    "
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "West"
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class javax.swing.BoxLayout ) {
+				"axis": 0
+			} ) {
+				name: "rightPanel"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "rightLabelHelper"
+					"text": "    "
+				} )
+			}, new FormLayoutConstraints( class java.lang.String ) {
+				"value": "East"
+			} )
+		}, new FormLayoutConstraints( null ) {
+			"location": new java.awt.Point( 0, 0 )
+			"size": new java.awt.Dimension( 860, 386 )
+		} )
+	}
+}
