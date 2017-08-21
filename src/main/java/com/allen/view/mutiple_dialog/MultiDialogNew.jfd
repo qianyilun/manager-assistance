@@ -25,7 +25,7 @@ new FormModel {
 				name: "buttomPanel"
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "openLinkBtn"
-					"text": "Open the Link"
+					"text": "Open All Links"
 					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "openLinkBtnActionPerformed", true ) )
 				} )
 				add( new FormComponent( "javax.swing.JButton" ) {
@@ -51,21 +51,78 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTree" ) {
 					name: "treeView"
 					"model": new javax.swing.tree.DefaultTreeModel( new javax.swing.tree.DefaultMutableTreeNode {
-						userObject: "<_ID__>: within __ mins."
+						userObject: "(root)"
 						add( new javax.swing.tree.DefaultMutableTreeNode {
-							userObject: "ID:"
+							userObject: "<_ID__>: within __ mins."
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "ID:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Title:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Priority:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Pecent:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Link:"
+							} )
 						} )
 						add( new javax.swing.tree.DefaultMutableTreeNode {
-							userObject: "Title:"
+							userObject: "<_ID__>: within __ mins."
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "ID:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Title:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Priority:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Pecent:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Link:"
+							} )
 						} )
 						add( new javax.swing.tree.DefaultMutableTreeNode {
-							userObject: "Priority:"
+							userObject: "<_ID__>: within __ mins."
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "ID:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Title:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Priority:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Pecent:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Link:"
+							} )
 						} )
 						add( new javax.swing.tree.DefaultMutableTreeNode {
-							userObject: "Pecent:"
-						} )
-						add( new javax.swing.tree.DefaultMutableTreeNode {
-							userObject: "Link:"
+							userObject: "<_ID__>: within __ mins."
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "ID:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Title:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Priority:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Pecent:"
+							} )
+							add( new javax.swing.tree.DefaultMutableTreeNode {
+								userObject: "Link:"
+							} )
 						} )
 					} )
 				} )

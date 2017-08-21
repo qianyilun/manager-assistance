@@ -2,21 +2,22 @@
  * Created by JFormDesigner on Sun Aug 20 20:10:59 PDT 2017
  */
 
-package com.allen.view.single_dialog;
+package com.allen.view.mutiple_dialog;
 
+import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
-import javax.swing.*;
-import javax.swing.tree.*;
 
 /**
  * This class is to display one single incident information
  * @author Allen Qian
  */
-public class SingleDialogNew {
-    public SingleDialogNew() {
+public class MultiDialogNew {
+    public MultiDialogNew() {
         initComponents();
     }
 
@@ -98,7 +99,7 @@ public class SingleDialogNew {
             {
 
                 //---- openLinkBtn ----
-                openLinkBtn.setText("Open the Link");
+                openLinkBtn.setText("Open All Links");
                 openLinkBtn.addActionListener(e -> openLinkBtnActionPerformed(e));
 
                 //---- closeBtn ----
@@ -147,13 +148,36 @@ public class SingleDialogNew {
 
                 //---- treeView ----
                 treeView.setModel(new DefaultTreeModel(
-                    new DefaultMutableTreeNode("<_ID__>: within __ mins.") {
+                    new DefaultMutableTreeNode("(root)") {
                         {
-                            add(new DefaultMutableTreeNode("ID:"));
-                            add(new DefaultMutableTreeNode("Title:"));
-                            add(new DefaultMutableTreeNode("Priority:"));
-                            add(new DefaultMutableTreeNode("Pecent:"));
-                            add(new DefaultMutableTreeNode("Link:"));
+                            DefaultMutableTreeNode node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
+                                node1.add(new DefaultMutableTreeNode("ID:"));
+                                node1.add(new DefaultMutableTreeNode("Title:"));
+                                node1.add(new DefaultMutableTreeNode("Priority:"));
+                                node1.add(new DefaultMutableTreeNode("Pecent:"));
+                                node1.add(new DefaultMutableTreeNode("Link:"));
+                            add(node1);
+                            node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
+                                node1.add(new DefaultMutableTreeNode("ID:"));
+                                node1.add(new DefaultMutableTreeNode("Title:"));
+                                node1.add(new DefaultMutableTreeNode("Priority:"));
+                                node1.add(new DefaultMutableTreeNode("Pecent:"));
+                                node1.add(new DefaultMutableTreeNode("Link:"));
+                            add(node1);
+                            node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
+                                node1.add(new DefaultMutableTreeNode("ID:"));
+                                node1.add(new DefaultMutableTreeNode("Title:"));
+                                node1.add(new DefaultMutableTreeNode("Priority:"));
+                                node1.add(new DefaultMutableTreeNode("Pecent:"));
+                                node1.add(new DefaultMutableTreeNode("Link:"));
+                            add(node1);
+                            node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
+                                node1.add(new DefaultMutableTreeNode("ID:"));
+                                node1.add(new DefaultMutableTreeNode("Title:"));
+                                node1.add(new DefaultMutableTreeNode("Priority:"));
+                                node1.add(new DefaultMutableTreeNode("Pecent:"));
+                                node1.add(new DefaultMutableTreeNode("Link:"));
+                            add(node1);
                         }
                     }));
                 centerPane.setViewportView(treeView);
