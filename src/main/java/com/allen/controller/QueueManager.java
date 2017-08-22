@@ -63,18 +63,16 @@ public class QueueManager {
             if (data.hasValidIRT()) {
                 if (irt.isLessThan(30)) {
                     emergeQueueList.addIncidentToArray(data);
-
                 } else if (irt.isLessThan(45)) {
-                    // count first, then launch the view
+                    // count first, then launch the view in another Thread
                 }
             }
         }
 
-        new MultiDialogNew(emergeQueueList);
-
-
+        // launch the multiDialog window to show all about expired incidents at the same time
         if (emergeQueueList.getLst() != null) {
             // launch the view
+            new MultiDialogNew(emergeQueueList);
         }
 //        System.out.println(emergeQueueList.getLst().get(0).getIRT_EXPIRY());
     }
