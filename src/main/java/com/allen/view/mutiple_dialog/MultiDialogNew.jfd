@@ -19,10 +19,10 @@ new FormModel {
 				"value": "North"
 			} )
 			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq l {space :p:114:p, comp openLinkBtn:::p::p, space ::572:x, comp closeBtn:::p::p, space :p:82:p, comp sendEmailBtn:::p::p, space :p:62:p, comp RemindLaterBtn:::p::p, space :p:124:p}}"
+				"$horizontalGroup": "par l {seq l {space :p:114:p, comp openLinkBtn:::p::p, space ::568:x, comp closeBtn:::p::p, space :p:82:p, comp sendEmailBtn:::p::p, space :p:62:p, comp RemindLaterBtn:::p::p, space :p:124:p}}"
 				"$verticalGroup": "par l {seq t {space ::31:x, par b {comp RemindLaterBtn::b:p::p, comp sendEmailBtn::b:p::p, comp closeBtn::b:p::p, comp openLinkBtn::b:p::p}, space :p:22:p}}"
 			} ) {
-				name: "buttomPanel"
+				name: "bottomPanel"
 				add( new FormComponent( "javax.swing.JButton" ) {
 					name: "openLinkBtn"
 					"text": "Open All Links"
@@ -51,7 +51,7 @@ new FormModel {
 				add( new FormComponent( "javax.swing.JTree" ) {
 					name: "treeView"
 					"model": new javax.swing.tree.DefaultTreeModel( new javax.swing.tree.DefaultMutableTreeNode {
-						userObject: "(root)"
+						userObject: "Root"
 						add( new javax.swing.tree.DefaultMutableTreeNode {
 							userObject: "<_ID__>: within __ mins."
 							add( new javax.swing.tree.DefaultMutableTreeNode {

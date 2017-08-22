@@ -45,7 +45,7 @@ public class SingleDialogNew {
             }
         };
 
-        timer.schedule(task, 5 *   // minutes to sleep
+        timer.schedule(task, 9 *   // minutes to sleep
                                   60 *   // seconds to a minute
                                   1000); // milliseconds to a second
 

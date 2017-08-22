@@ -1,8 +1,13 @@
 /*
  * Created by JFormDesigner on Sun Aug 20 20:10:59 PDT 2017
+ *
+ * This class will be override if MultiDialogNew.jfd was opened. Be aware of the nodes of treeView
  */
 
 package com.allen.view.mutiple_dialog;
+
+import com.allen.model.DATA;
+import com.allen.model.EmergeQueueList;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -17,7 +22,10 @@ import java.util.TimerTask;
  * @author Allen Qian
  */
 public class MultiDialogNew {
-    public MultiDialogNew() {
+    private EmergeQueueList emergeQueueList;
+
+    public MultiDialogNew(EmergeQueueList emergeQueueList) {
+        this.emergeQueueList = emergeQueueList;
         initComponents();
     }
 
@@ -46,7 +54,7 @@ public class MultiDialogNew {
             }
         };
 
-        timer.schedule(task, 5 *   // minutes to sleep
+        timer.schedule(task, 9 *   // minutes to sleep
                                   60 *   // seconds to a minute
                                   1000); // milliseconds to a second
 
@@ -58,7 +66,7 @@ public class MultiDialogNew {
         frame = new JFrame();
         topPanel = new JPanel();
         Title = new JLabel();
-        buttomPanel = new JPanel();
+        bottomPanel = new JPanel();
         openLinkBtn = new JButton();
         closeBtn = new JButton();
         sendEmailBtn = new JButton();
@@ -95,7 +103,7 @@ public class MultiDialogNew {
             }
             frameContentPane.add(topPanel, BorderLayout.NORTH);
 
-            //======== buttomPanel ========
+            //======== bottomPanel ========
             {
 
                 //---- openLinkBtn ----
@@ -114,14 +122,14 @@ public class MultiDialogNew {
                 RemindLaterBtn.setText("Remind me Later");
                 RemindLaterBtn.addActionListener(e -> RemindLaterBtnActionPerformed(e));
 
-                GroupLayout buttomPanelLayout = new GroupLayout(buttomPanel);
-                buttomPanel.setLayout(buttomPanelLayout);
-                buttomPanelLayout.setHorizontalGroup(
-                    buttomPanelLayout.createParallelGroup()
-                        .addGroup(buttomPanelLayout.createSequentialGroup()
+                GroupLayout bottomPanelLayout = new GroupLayout(bottomPanel);
+                bottomPanel.setLayout(bottomPanelLayout);
+                bottomPanelLayout.setHorizontalGroup(
+                    bottomPanelLayout.createParallelGroup()
+                        .addGroup(bottomPanelLayout.createSequentialGroup()
                             .addGap(114, 114, 114)
                             .addComponent(openLinkBtn)
-                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 572, Short.MAX_VALUE)
+                            .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 568, Short.MAX_VALUE)
                             .addComponent(closeBtn)
                             .addGap(82, 82, 82)
                             .addComponent(sendEmailBtn)
@@ -129,11 +137,11 @@ public class MultiDialogNew {
                             .addComponent(RemindLaterBtn)
                             .addGap(124, 124, 124))
                 );
-                buttomPanelLayout.setVerticalGroup(
-                    buttomPanelLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, buttomPanelLayout.createSequentialGroup()
+                bottomPanelLayout.setVerticalGroup(
+                    bottomPanelLayout.createParallelGroup()
+                        .addGroup(GroupLayout.Alignment.TRAILING, bottomPanelLayout.createSequentialGroup()
                             .addContainerGap(31, Short.MAX_VALUE)
-                            .addGroup(buttomPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                            .addGroup(bottomPanelLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                 .addComponent(RemindLaterBtn)
                                 .addComponent(sendEmailBtn)
                                 .addComponent(closeBtn)
@@ -141,45 +149,14 @@ public class MultiDialogNew {
                             .addGap(22, 22, 22))
                 );
             }
-            frameContentPane.add(buttomPanel, BorderLayout.SOUTH);
+            frameContentPane.add(bottomPanel, BorderLayout.SOUTH);
 
             //======== centerPane ========
             {
 
                 //---- treeView ----
-                treeView.setModel(new DefaultTreeModel(
-                    new DefaultMutableTreeNode("(root)") {
-                        {
-                            DefaultMutableTreeNode node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
-                                node1.add(new DefaultMutableTreeNode("ID:"));
-                                node1.add(new DefaultMutableTreeNode("Title:"));
-                                node1.add(new DefaultMutableTreeNode("Priority:"));
-                                node1.add(new DefaultMutableTreeNode("Pecent:"));
-                                node1.add(new DefaultMutableTreeNode("Link:"));
-                            add(node1);
-                            node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
-                                node1.add(new DefaultMutableTreeNode("ID:"));
-                                node1.add(new DefaultMutableTreeNode("Title:"));
-                                node1.add(new DefaultMutableTreeNode("Priority:"));
-                                node1.add(new DefaultMutableTreeNode("Pecent:"));
-                                node1.add(new DefaultMutableTreeNode("Link:"));
-                            add(node1);
-                            node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
-                                node1.add(new DefaultMutableTreeNode("ID:"));
-                                node1.add(new DefaultMutableTreeNode("Title:"));
-                                node1.add(new DefaultMutableTreeNode("Priority:"));
-                                node1.add(new DefaultMutableTreeNode("Pecent:"));
-                                node1.add(new DefaultMutableTreeNode("Link:"));
-                            add(node1);
-                            node1 = new DefaultMutableTreeNode("<_ID__>: within __ mins.");
-                                node1.add(new DefaultMutableTreeNode("ID:"));
-                                node1.add(new DefaultMutableTreeNode("Title:"));
-                                node1.add(new DefaultMutableTreeNode("Priority:"));
-                                node1.add(new DefaultMutableTreeNode("Pecent:"));
-                                node1.add(new DefaultMutableTreeNode("Link:"));
-                            add(node1);
-                        }
-                    }));
+                addIncidentToTreeView();
+
                 centerPane.setViewportView(treeView);
             }
             frameContentPane.add(centerPane, BorderLayout.CENTER);
@@ -214,7 +191,7 @@ public class MultiDialogNew {
     private JFrame frame;
     private JPanel topPanel;
     private JLabel Title;
-    private JPanel buttomPanel;
+    private JPanel bottomPanel;
     private JButton openLinkBtn;
     private JButton closeBtn;
     private JButton sendEmailBtn;
@@ -226,5 +203,26 @@ public class MultiDialogNew {
     private JPanel rightPanel;
     private JLabel rightLabelHelper;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    private void addIncidentToTreeView() {
+        treeView.setModel(new DefaultTreeModel(
+                new DefaultMutableTreeNode("Root") {
+                    {
+                        for (DATA incident : emergeQueueList.getLst()) {
+
+                            System.out.println("aaa");
+                            String userObject = incident.hasMinutesLeft();
+                            System.out.println(userObject);
+                            DefaultMutableTreeNode node1 = new DefaultMutableTreeNode(userObject);
+                            node1.add(new DefaultMutableTreeNode("ID:"));
+                            node1.add(new DefaultMutableTreeNode("Title:"));
+                            node1.add(new DefaultMutableTreeNode("Priority:"));
+                            node1.add(new DefaultMutableTreeNode("Pecent:"));
+                            node1.add(new DefaultMutableTreeNode("Link:"));
+                            add(node1);
+                        }
+                    }
+                }));
+    }
 
 }

@@ -1,5 +1,9 @@
 package com.allen.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by allen on 10/08/17.
  *
@@ -712,6 +716,22 @@ public class DATA implements Comparable<DATA>{
         } else {
             return thisIRT.getMinute() - dataIRT.getMinute();
         }
+    }
 
+    public String hasMinutesLeft() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String currentTime = dateFormat.format(new Date()).substring(8,12);
+        String irtTime = "" + (new IRT(IRT_EXPIRY).getHour()-7) + new IRT(IRT_EXPIRY).getMinute();
+        long difference = 0;
+
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("HHmm");
+            Date date1 = format.parse(irtTime);
+            Date date2 = format.parse(currentTime);
+            difference = (date1.getTime() - date2.getTime()) / 60 / 1000;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ""+ difference;
     }
 }
