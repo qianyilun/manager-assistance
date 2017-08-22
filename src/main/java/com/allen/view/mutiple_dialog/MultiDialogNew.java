@@ -210,7 +210,7 @@ public class MultiDialogNew {
                 new DefaultMutableTreeNode("Root") {
                     {
                         for (DATA incident : emergeQueueList.getLst()) {
-                            String userObject = "<" + incident.getOBJECT_ID() + ">: within " + incident.hasMinutesLeft() + " within minutes";
+                            String userObject = "<" + incident.getOBJECT_ID() + ">: within " + incident.hasMinutesLeft() + " minutes";
                             DefaultMutableTreeNode node1 = new DefaultMutableTreeNode(userObject);
                             node1.add(new DefaultMutableTreeNode("ID: " + incident.getOBJECT_ID()));
                             node1.add(new DefaultMutableTreeNode("Title: " + incident.getDESCRIPTION()));
