@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * Created by yilunq on 12/08/17.
@@ -63,11 +65,19 @@ public class QueueManager {
             System.out.println(irt);
             if (data.hasValidIRT()) {
                 if (irt.isLessThan(30)) {
-                    System.out.println("aaaa");
                     emergeQueueList.addIncidentToArray(data);
                 } else if (irt.isLessThan(45)) {
-                    // count first, then launch the view in another Thread
-                    new SingleDialogNew(data);
+                    // set timer first, then launch the view in another Thread (Swing will create new thread for each view automatically)
+                    Timer timer = new Timer();
+                    TimerTask task = new TimerTask() {
+                        @Override
+                        public void run() {
+                            new SingleDialogNew(data);
+                        }
+                    };
+                    timer.schedule(task, new Integer(data.hasMinutesLeft()) *   // minutes to sleep
+                            60 *   // seconds to a minute
+                            1000);
                 }
             }
         }
@@ -77,7 +87,6 @@ public class QueueManager {
             // launch the view
             new MultiDialogNew(emergeQueueList);
         }
-//        System.out.println(emergeQueueList.getLst().get(0).getIRT_EXPIRY());
     }
 
     private MainParser parseJson(String jsonString) {
