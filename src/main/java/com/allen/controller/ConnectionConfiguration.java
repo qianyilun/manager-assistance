@@ -4,6 +4,8 @@ import com.sun.javafx.PlatformUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.sql.Driver;
+
 /**
  * Created by yilunq on 12/08/17.
  *
@@ -25,19 +27,31 @@ public class ConnectionConfiguration {
 
     public void connect() {
         String url = firstHalf + queueID + secondHalf;
-        WebDriver driver = new ChromeDriver();
-
-        openBrowser(driver, url);
-        jsonSourceCode = pureJsonString(driver);
+        WebDriver driver = null;
+        try {
+            driver = openDriver(url);
+            jsonSourceCode = pureJsonString(driver);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (driver != null) {
+                driver.close();
+            }
+        }
     }
 
-    private void openBrowser(WebDriver driver, String url) {
+    private WebDriver openDriver(String url) {
+
         String key = "webdriver.chrome.driver";
+        System.out.println("value");
         String value = getOSValue();
+        System.out.println(value);
         System.setProperty(key, value);
 
+        WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(url);
+        return driver;
     }
 
     private String pureJsonString(WebDriver driver) {
@@ -56,7 +70,7 @@ public class ConnectionConfiguration {
             return ".src/chromedriver/Mac/chromedriver";
         }
         if (PlatformUtil.isWin7OrLater()) {
-            return "src\\chromedriver\\Windows\\chromedriver.exe";
+            return "C:\\Users\\I860745\\Documents\\Projects\\QueueManager_SAP\\src\\chromedriver\\Windows\\chromedriver.exe";
         }
         if (PlatformUtil.isLinux()) {
             return "./src/chromedriver/Linux64/chromedriver";

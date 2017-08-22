@@ -41,6 +41,9 @@ public class MultiDialogNew {
     private void openLinkBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("open the link");
+        for (DATA incident : emergeQueueList.getLst()) {
+            System.out.println(incident.getURL_MESSAGE());
+        }
     }
 
     private void RemindLaterBtnActionPerformed(ActionEvent e) {

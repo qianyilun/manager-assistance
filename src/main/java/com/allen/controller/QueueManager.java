@@ -33,7 +33,13 @@ public class QueueManager {
     public void run() {
         emergeQueueList = new EmergeQueueList();
         String jsonSourceCode;
-        /* ///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+         ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
         cc = new ConnectionConfiguration(queueID);
         cc.connect();
@@ -42,7 +48,17 @@ public class QueueManager {
         jsonSourceCode = cc.getJsonSourceCode();
         incidentsInfo = parseJson(jsonSourceCode).getDATA();
 
-        */ ////////////////////////////////////////////////////////////////////
+         ////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+/*
 
     // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
@@ -50,6 +66,19 @@ public class QueueManager {
         jsonSourceCode = TestJSON.pageSource;
         incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
+
+*/
+
+
+
+
+
+
+
+
+
+
+
 
 
         // --------- Sort 'incidents' by IRT_EXPIRE date

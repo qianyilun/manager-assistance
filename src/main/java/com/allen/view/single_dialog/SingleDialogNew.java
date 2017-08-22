@@ -36,6 +36,7 @@ public class SingleDialogNew {
     private void openLinkBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("open the link");
+        System.out.println(incident.getURL_MESSAGE());
     }
 
     private void RemindLaterBtnActionPerformed(ActionEvent e) {
