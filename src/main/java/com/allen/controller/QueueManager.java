@@ -68,10 +68,10 @@ public class QueueManager {
                     // count first, then launch the view
                 }
             }
-
-            new MultiDialogNew(emergeQueueList);
-
         }
+
+        new MultiDialogNew(emergeQueueList);
+
 
         if (emergeQueueList.getLst() != null) {
             // launch the view
