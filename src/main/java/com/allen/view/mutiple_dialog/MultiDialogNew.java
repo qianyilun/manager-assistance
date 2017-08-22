@@ -98,7 +98,8 @@ public class MultiDialogNew {
                 topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 53));
 
                 //---- Title ----
-                Title.setText("__default__");
+                String title = "The queue has " + emergeQueueList.getLst().size() + " incidents will expire within 30 minutes";
+                Title.setText(title);
                 topPanel.add(Title);
             }
             frameContentPane.add(topPanel, BorderLayout.NORTH);
