@@ -1,6 +1,7 @@
 package com.allen.controller;
 
 import com.allen.model.*;
+import com.allen.view.mutiple_dialog.MultiDialogNew;
 import com.google.gson.Gson;
 
 import java.io.BufferedWriter;
@@ -62,10 +63,14 @@ public class QueueManager {
             if (data.hasValidIRT()) {
                 if (irt.isLessThan(30)) {
                     emergeQueueList.addIncidentToArray(data);
+
                 } else if (irt.isLessThan(45)) {
-                    // launch the view
+                    // count first, then launch the view
                 }
             }
+
+            new MultiDialogNew(emergeQueueList);
+
         }
 
         if (emergeQueueList.getLst() != null) {

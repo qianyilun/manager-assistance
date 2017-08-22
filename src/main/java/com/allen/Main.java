@@ -32,8 +32,6 @@ public class Main {
         // display welcome start page
         StartPageNew sp = new StartPageNew();
 
-        SingleDialogNew singleDialog = new SingleDialogNew();
-
         timer = new Timer();
         task = new TimerTask() {
             @Override
@@ -44,6 +42,6 @@ public class Main {
         };
 
         // note, period should be 15 mins
-//        timer.schedule(task, 0, 5000);
+        timer.schedule(task, 0, 10000);
     }
 }

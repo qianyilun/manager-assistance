@@ -67,7 +67,7 @@ public class IRT {
         IRT now = new IRT(currentDate);
 
         if (now.getYear() == year && now.getDate() == date
-                && now.getHour() + 7 == hour) { // System's 19 hour = 12PST
+                && now.getHour() + 7 == hour) { // BCP's 19 hour = 12PST
             if (minute - now.getMinute() <= minutesLeft) {
                 return true;
             }
