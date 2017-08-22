@@ -2,6 +2,7 @@ package com.allen.controller;
 
 import com.allen.model.*;
 import com.allen.view.mutiple_dialog.MultiDialogNew;
+import com.allen.view.single_dialog.SingleDialogNew;
 import com.google.gson.Gson;
 
 import java.io.BufferedWriter;
@@ -62,15 +63,17 @@ public class QueueManager {
             System.out.println(irt);
             if (data.hasValidIRT()) {
                 if (irt.isLessThan(30)) {
+                    System.out.println("aaaa");
                     emergeQueueList.addIncidentToArray(data);
                 } else if (irt.isLessThan(45)) {
                     // count first, then launch the view in another Thread
+                    new SingleDialogNew(data);
                 }
             }
         }
 
         // launch the multiDialog window to show all about expired incidents at the same time
-        if (emergeQueueList.getLst() != null) {
+        if (emergeQueueList.getLst().size() != 0) {
             // launch the view
             new MultiDialogNew(emergeQueueList);
         }

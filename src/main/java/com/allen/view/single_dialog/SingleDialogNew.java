@@ -4,6 +4,8 @@
 
 package com.allen.view.single_dialog;
 
+import com.allen.model.DATA;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Timer;
@@ -16,7 +18,9 @@ import javax.swing.tree.*;
  * @author Allen Qian
  */
 public class SingleDialogNew {
-    public SingleDialogNew() {
+    private DATA incident;
+    public SingleDialogNew(DATA incident) {
+        this.incident = incident;
         initComponents();
     }
 
@@ -89,7 +93,8 @@ public class SingleDialogNew {
                 topPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 53));
 
                 //---- Title ----
-                Title.setText("__default__");
+                String title = incident.getDESCRIPTION() + " <ID: " + incident.getOBJECT_ID() + ">" + " will expire within " + incident.hasMinutesLeft() + " minutes";
+                Title.setText(title);
                 topPanel.add(Title);
             }
             frameContentPane.add(topPanel, BorderLayout.NORTH);
@@ -146,16 +151,8 @@ public class SingleDialogNew {
             {
 
                 //---- treeView ----
-                treeView.setModel(new DefaultTreeModel(
-                    new DefaultMutableTreeNode("<_ID__>: within __ mins.") {
-                        {
-                            add(new DefaultMutableTreeNode("ID:"));
-                            add(new DefaultMutableTreeNode("Title:"));
-                            add(new DefaultMutableTreeNode("Priority:"));
-                            add(new DefaultMutableTreeNode("Pecent:"));
-                            add(new DefaultMutableTreeNode("Link:"));
-                        }
-                    }));
+                addIncidentToTreeView();
+
                 centerPane.setViewportView(treeView);
             }
             frameContentPane.add(centerPane, BorderLayout.CENTER);
@@ -202,5 +199,20 @@ public class SingleDialogNew {
     private JPanel rightPanel;
     private JLabel rightLabelHelper;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    private void addIncidentToTreeView() {
+        treeView.setModel(new DefaultTreeModel(
+                new DefaultMutableTreeNode("Root") {
+                    {
+                        String userObject = "<" + incident.getOBJECT_ID() + ">: within " + incident.hasMinutesLeft() + " minutes";
+                        DefaultMutableTreeNode node1 = new DefaultMutableTreeNode(userObject);
+                        node1.add(new DefaultMutableTreeNode("ID: " + incident.getOBJECT_ID()));
+                        node1.add(new DefaultMutableTreeNode("Title: " + incident.getDESCRIPTION()));
+                        node1.add(new DefaultMutableTreeNode("Priority: " + incident.getPRIORITY_DESCR()));
+                        node1.add(new DefaultMutableTreeNode("Link: " + incident.getURL_MESSAGE()));
+                        add(node1);
+                    }
+                }));
+    }
 
 }
