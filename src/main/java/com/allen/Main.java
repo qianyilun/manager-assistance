@@ -42,6 +42,8 @@ public class Main {
         };
 
         // note, period should be 15 mins
-        timer.schedule(task, 0, 10000);
+        timer.schedule(task, 0, 15 *   // minutes to sleep
+                                            60 *   // seconds to a minute
+                                            1000); // milliseconds to a second);
     }
 }
