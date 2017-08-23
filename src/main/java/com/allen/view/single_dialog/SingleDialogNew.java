@@ -4,6 +4,7 @@
 
 package com.allen.view.single_dialog;
 
+import com.allen.controller.EmailSend;
 import com.allen.controller.OpenURL;
 import com.allen.model.DATA;
 
@@ -35,6 +36,8 @@ public class SingleDialogNew {
     private void sendEmailBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("send emails");
+        EmailSend.send(incident.getURL_MESSAGE());
+        frame.dispose();
     }
 
     private void openLinkBtnActionPerformed(ActionEvent e) {
