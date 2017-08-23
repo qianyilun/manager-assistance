@@ -10,7 +10,9 @@ package com.allen.controller;
 /**
  * https://www.youtube.com/watch?v=UMfjndwGwnM
  * @author Naveen
+ * @anthor Allen Qian
  */
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
 import javax.mail.*;
@@ -19,14 +21,25 @@ import javax.mail.internet.MimeMessage;
 
 
 public class EmailSend {
+    public static List<String> getEmailList() {
+        return emailList;
+    }
+
     private static List<String> emailList = new ArrayList<>();
 
     private static void assignEmailList() {
+        File file = new File("email list.txt");
         try {
-            
+            Scanner sc = new Scanner(file);
+
+            while (sc.hasNextLine()) {
+                emailList.add(sc.next());
+            }
+            sc.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println(emailList);
     }
 
     public static void send(String content){
@@ -51,20 +64,26 @@ public class EmailSend {
 
             java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             Session mailSession = Session.getDefaultInstance(props, null);
-
-
-
             mailSession.setDebug(sessionDebug);
-            Message msg = new MimeMessage(mailSession);
-            msg.setFrom(new InternetAddress(from));
-            InternetAddress[] address = {new InternetAddress(to)};
-            msg.setRecipients(Message.RecipientType.TO, address);
-            msg.setSubject(subject); msg.setSentDate(new Date());
-            msg.setText(messageText);
+            Transport transport = null;
 
-            Transport transport=mailSession.getTransport("smtp");
-            transport.connect(host, user, pass);
-            transport.sendMessage(msg, msg.getAllRecipients());
+            // send multiple emails
+            for (String emailAdress : emailList) {
+
+                Message msg = new MimeMessage(mailSession);
+                msg.setFrom(new InternetAddress(from));
+                InternetAddress[] address = {new InternetAddress(emailAdress)};
+                msg.setRecipients(Message.RecipientType.TO, address);
+                msg.setSubject(subject);
+                msg.setSentDate(new Date());
+                msg.setText(messageText);
+
+                transport = mailSession.getTransport("smtp");
+                transport.connect(host, user, pass);
+                transport.sendMessage(msg, msg.getAllRecipients());
+
+            }
+
             transport.close();
             System.out.println("message send successfully");
         }catch(Exception ex)

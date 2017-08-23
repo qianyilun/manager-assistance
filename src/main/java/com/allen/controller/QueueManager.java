@@ -38,7 +38,7 @@ public class QueueManager {
 
 
 
-
+/*
          ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
         cc = new ConnectionConfiguration(queueID);
@@ -50,6 +50,7 @@ public class QueueManager {
 
          ////////////////////////////////////////////////////////////////////
 
+*/
 
 
 
@@ -59,14 +60,14 @@ public class QueueManager {
 
 
 
-/*
+
     // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
         // --------- Get 'incidents' in Test raw Json String ---------
         jsonSourceCode = TestJSON.pageSource;
         incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
-*/
+
 
 
 

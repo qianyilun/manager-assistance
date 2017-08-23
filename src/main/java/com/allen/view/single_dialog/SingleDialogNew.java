@@ -36,8 +36,9 @@ public class SingleDialogNew {
     private void sendEmailBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("send emails");
+        frame.dispose(); // dispose frame first since it can "speed up" action time
+
         EmailSend.send(incident.getURL_MESSAGE());
-        frame.dispose();
     }
 
     private void openLinkBtnActionPerformed(ActionEvent e) {

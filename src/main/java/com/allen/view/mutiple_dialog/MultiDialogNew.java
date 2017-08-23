@@ -40,12 +40,13 @@ public class MultiDialogNew {
     private void sendEmailBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("send emails");
+        frame.dispose(); // dispose frame first since it can "speed up" action time
+
         String content = "";
         for (DATA incident : emergeQueueList.getLst()) {
             content = content + "\n * " + incident.getURL_MESSAGE();
         }
         EmailSend.send(content);
-        frame.dispose();
     }
 
     private void openLinkBtnActionPerformed(ActionEvent e) {
