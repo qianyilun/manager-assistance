@@ -48,7 +48,6 @@ public class EmailSend {
             String host ="smtp.gmail.com" ;
             String user = "queuemanager.epm@gmail.com";
             String pass = "vz3AWAvvV";
-            String to = "qianyiluntemp@gmail.com";
             String from = "queuemanager.epm@gmail.com";
             String subject = "Queue Manager Automatically Send.";
             String messageText = content;
