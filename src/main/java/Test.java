@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,7 +49,7 @@ public class Test {
 //            }
 //        }
 
-
+        countDownTimer();
     }
 
 
@@ -78,5 +79,23 @@ public class Test {
     {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, Charset.defaultCharset());
+    }
+
+    static int counter;
+
+    private static void countDownTimer() {
+        Timer timer = new Timer();
+        counter = 10;
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(counter);
+                counter--;
+                if (counter == -1) {
+                    timer.cancel();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 1000,1000);
     }
 }
