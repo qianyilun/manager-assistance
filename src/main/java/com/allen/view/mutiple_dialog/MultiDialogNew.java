@@ -34,23 +34,39 @@ public class MultiDialogNew {
     }
 
     private void closeBtnActionPerformed(ActionEvent e) {
+        // stop the countdown timer first
+        counter = Integer.MAX_VALUE;
+        timer.cancel();
+        sendEmailBtn.setText("Send email Now");
+
+
         frame.dispose();
     }
 
     private void sendEmailBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
+        // stop the countdown timer first
+        counter = Integer.MAX_VALUE;
+        timer.cancel();
+
         System.out.println("send emails");
         frame.dispose(); // dispose frame first since it can "speed up" action time
 
         String content = "";
         for (DATA incident : emergeQueueList.getLst()) {
-            content = content + "\n * " + incident.getDESCRIPTION() + ": has " + incident.hasMinutesLeft() + " minutes to expire\n" + incident.getURL_MESSAGE();
+            content = content + "\n * " + incident.getDESCRIPTION() + ": has " + (Integer.parseInt(incident.hasMinutesLeft())-10) + " minutes to expire\n" + incident.getURL_MESSAGE();
         }
         EmailSend.send(content);
     }
 
     private void openLinkBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
+        // stop the countdown timer first
+        counter = Integer.MAX_VALUE;
+        timer.cancel();
+        sendEmailBtn.setText("Send email Now");
+
+
         System.out.println("open the link");
         for (DATA incident : emergeQueueList.getLst()) {
             URL url = null;
@@ -65,12 +81,17 @@ public class MultiDialogNew {
     }
 
     private void RemindLaterBtnActionPerformed(ActionEvent e) {
+        // stop the countdown timer first
+        counter = Integer.MAX_VALUE;
+
+
         frame.setVisible(false);
 
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
+                counter = 600;
                 frame.setVisible(true);
             }
         };
@@ -137,7 +158,7 @@ public class MultiDialogNew {
                 closeBtn.addActionListener(e -> closeBtnActionPerformed(e));
 
                 //---- sendEmailBtn ----
-                sendEmailBtn.setText("Send email now");
+                sendEmailBtn.setText("Send email now (or 600 sec)");
                 sendEmailBtn.addActionListener(e -> sendEmailBtnActionPerformed(e));
 
                 //---- RemindLaterBtn ----
@@ -204,6 +225,8 @@ public class MultiDialogNew {
             frameContentPane.add(rightPanel, BorderLayout.EAST);
             frame.pack();
             frame.setLocationRelativeTo(frame.getOwner());
+
+            detectHelper();
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -225,6 +248,8 @@ public class MultiDialogNew {
     private JPanel rightPanel;
     private JLabel rightLabelHelper;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+    private int counter;
+    private Timer timer;
 
     private void addIncidentToTreeView() {
         treeView.setModel(new DefaultTreeModel(
@@ -241,6 +266,27 @@ public class MultiDialogNew {
                         }
                     }
                 }));
+    }
+
+    // protect the incident from Queue Manager is leave computer alone
+    private void detectHelper() {
+        timer = new Timer();
+        counter = 600;
+        TimerTask task = new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println(counter);
+                sendEmailBtn.setText("Send email Now " + " (or " + counter + " seconds)");
+                counter--;
+                if (counter == -1) {
+                    // send automatic emails
+                    sendEmailBtnActionPerformed(null);
+
+                    timer.cancel();
+                }
+            }
+        };
+        timer.scheduleAtFixedRate(task, 1000,1000);
     }
 
 }
