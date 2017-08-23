@@ -6,6 +6,7 @@
 
 package com.allen.view.mutiple_dialog;
 
+import com.allen.controller.OpenURL;
 import com.allen.model.DATA;
 import com.allen.model.EmergeQueueList;
 
@@ -14,6 +15,8 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -42,6 +45,13 @@ public class MultiDialogNew {
         // TODO add your code here
         System.out.println("open the link");
         for (DATA incident : emergeQueueList.getLst()) {
+            URL url = null;
+            try {
+                url = new URL(incident.getURL_MESSAGE());
+            } catch (MalformedURLException except) {
+                except.printStackTrace();
+            }
+            OpenURL.openWebpage(url);
             System.out.println(incident.getURL_MESSAGE());
         }
     }

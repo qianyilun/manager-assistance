@@ -96,7 +96,6 @@ public class QueueManager {
                 if (irt.isLessThan(30)) {
                     emergeQueueList.addIncidentToArray(data);
                 } else if (irt.isLessThan(45)) {
-                    System.out.println(data.hasMinutesLeft());
                     // set timer first, then launch the view in another Thread (Swing will create new thread for each view automatically)
                     Timer timer = new Timer();
                     TimerTask task = new TimerTask() {
