@@ -14,6 +14,10 @@ package com.allen.controller;
  */
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -27,7 +31,7 @@ public class EmailSend {
 
     private static List<String> emailList = new ArrayList<>();
 
-    private static void assignEmailList() {
+    private static void loadEmailList() {
         File file = new File("email list.txt");
         try {
             Scanner sc = new Scanner(file);
@@ -42,15 +46,23 @@ public class EmailSend {
         System.out.println(emailList);
     }
 
+    // https://stackoverflow.com/questions/326390/how-do-i-create-a-java-string-from-the-contents-of-a-file
+    private static String loadEmailContent(String path)
+            throws IOException  {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, Charset.defaultCharset());
+    }
+
     public static void send(String content){
-        assignEmailList();
+        loadEmailList();
         try{
+            String emailContentFilePath = "email content.txt";
             String host ="smtp.gmail.com" ;
             String user = "queuemanager.epm@gmail.com";
             String pass = "vz3AWAvvV";
             String from = "queuemanager.epm@gmail.com";
             String subject = "Queue Manager Automatically Send.";
-            String messageText = content;
+            String messageText = loadEmailContent(emailContentFilePath) + "\n\n" + content;
             boolean sessionDebug = false;
 
             Properties props = System.getProperties();
@@ -85,8 +97,7 @@ public class EmailSend {
 
             transport.close();
             System.out.println("message send successfully");
-        }catch(Exception ex)
-        {
+        }catch(Exception ex)  {
             System.out.println(ex);
         }
 
