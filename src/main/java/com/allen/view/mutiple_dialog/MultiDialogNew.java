@@ -6,6 +6,7 @@
 
 package com.allen.view.mutiple_dialog;
 
+import com.allen.controller.EmailSend;
 import com.allen.controller.OpenURL;
 import com.allen.model.DATA;
 import com.allen.model.EmergeQueueList;
@@ -39,6 +40,12 @@ public class MultiDialogNew {
     private void sendEmailBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("send emails");
+        String content = "";
+        for (DATA incident : emergeQueueList.getLst()) {
+            content = content + "\n * " + incident.getURL_MESSAGE();
+        }
+        EmailSend.send(content);
+        frame.dispose();
     }
 
     private void openLinkBtnActionPerformed(ActionEvent e) {

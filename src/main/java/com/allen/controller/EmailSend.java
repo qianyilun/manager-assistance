@@ -19,15 +19,15 @@ import javax.mail.internet.MimeMessage;
 
 public class EmailSend {
 
-    public static void send(){
+    public static void send(String content){
         try{
             String host ="smtp.gmail.com" ;
             String user = "queuemanager.epm@gmail.com";
             String pass = "vz3AWAvvV";
             String to = "qianyiluntemp@gmail.com";
             String from = "queuemanager.epm@gmail.com";
-            String subject = "This is confirmation number for your expertprogramming account. Please insert this number to activate your account.";
-            String messageText = "Your Is Test Email :";
+            String subject = "Queue Manager Automatically Send.";
+            String messageText = content;
             boolean sessionDebug = false;
 
             Properties props = System.getProperties();
