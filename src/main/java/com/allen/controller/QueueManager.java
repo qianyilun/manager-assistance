@@ -37,7 +37,7 @@ public class QueueManager {
 
 
 
-
+/*
 
          ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
@@ -50,6 +50,7 @@ public class QueueManager {
 
          ////////////////////////////////////////////////////////////////////
 
+*/
 
 
 
@@ -58,7 +59,6 @@ public class QueueManager {
 
 
 
-/*
 
     // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
@@ -67,7 +67,7 @@ public class QueueManager {
         incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
 
-*/
+
 
 
 
@@ -96,15 +96,17 @@ public class QueueManager {
                 if (irt.isLessThan(30)) {
                     emergeQueueList.addIncidentToArray(data);
                 } else if (irt.isLessThan(45)) {
+                    System.out.println(data.hasMinutesLeft());
                     // set timer first, then launch the view in another Thread (Swing will create new thread for each view automatically)
                     Timer timer = new Timer();
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
                             new SingleDialogNew(data);
+                            timer.cancel();
                         }
                     };
-                    timer.schedule(task, new Integer(data.hasMinutesLeft()) *   // minutes to sleep
+                    timer.schedule(task, (new Integer(data.hasMinutesLeft())-30) *   // minutes to sleep
                             60 *   // seconds to a minute
                             1000);
                 }
