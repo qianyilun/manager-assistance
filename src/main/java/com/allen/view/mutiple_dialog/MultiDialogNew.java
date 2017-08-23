@@ -44,7 +44,7 @@ public class MultiDialogNew {
 
         String content = "";
         for (DATA incident : emergeQueueList.getLst()) {
-            content = content + "\n * " + incident.getURL_MESSAGE();
+            content = content + "\n * " + incident.getDESCRIPTION() + ": has " + incident.hasMinutesLeft() + " minutes to expire\n" + incident.getURL_MESSAGE();
         }
         EmailSend.send(content);
     }
