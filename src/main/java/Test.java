@@ -1,8 +1,15 @@
 import com.allen.view.single_dialog.SingleDialogNew;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,21 +31,52 @@ public class Test {
             e.printStackTrace();
         }
 
-        for (int i = 0; i < 10100; i++) {
-            System.out.println(i);
-            if (i == 40) {
-                Timer timer = new Timer();
-                TimerTask task = new TimerTask() {
-                    @Override
-                    public void run() {
-                        System.out.println("abc");
-                        timer.cancel();
-                    }
-                };
-                timer.schedule(task, new Integer("1") *   // minutes to sleep
-                        60 *   // seconds to a minute
-                        1000);
+//        for (int i = 0; i < 10100; i++) {
+//            System.out.println(i);
+//            if (i == 40) {
+//                Timer timer = new Timer();
+//                TimerTask task = new TimerTask() {
+//                    @Override
+//                    public void run() {
+//                        System.out.println("abc");
+//                        timer.cancel();
+//                    }
+//                };
+//                timer.schedule(task, new Integer("1") *   // minutes to sleep
+//                        60 *   // seconds to a minute
+//                        1000);
+//            }
+//        }
+
+
+    }
+
+
+    private static String loadEmailContent() {
+        String result = "";
+
+
+
+        File file = new File("email content.txt");
+        try {
+            Scanner sc = new Scanner(file);
+
+            while (sc.hasNextLine()) {
+                result += sc.next();
             }
+            System.out.println(result);
+            sc.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
+        return result;
+    }
+
+
+    static String readFile(String path)
+            throws IOException
+    {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, Charset.defaultCharset());
     }
 }
