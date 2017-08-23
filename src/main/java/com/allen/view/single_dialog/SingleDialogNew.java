@@ -4,10 +4,13 @@
 
 package com.allen.view.single_dialog;
 
+import com.allen.controller.OpenURL;
 import com.allen.model.DATA;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
@@ -20,6 +23,7 @@ import javax.swing.tree.*;
 public class SingleDialogNew {
     private DATA incident;
     public SingleDialogNew(DATA incident) {
+        System.out.println(incident);
         this.incident = incident;
         initComponents();
     }
@@ -36,6 +40,13 @@ public class SingleDialogNew {
     private void openLinkBtnActionPerformed(ActionEvent e) {
         // TODO add your code here
         System.out.println("open the link");
+        URL url = null;
+        try {
+            url = new URL(incident.getURL_MESSAGE());
+        } catch (MalformedURLException except) {
+            except.printStackTrace();
+        }
+        OpenURL.openWebpage(url);
         System.out.println(incident.getURL_MESSAGE());
     }
 
