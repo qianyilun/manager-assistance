@@ -12,6 +12,8 @@ import com.google.gson.JsonParser;
  *
  * Pretty JSON String method is from
  *  https://stackoverflow.com/questions/4105795/pretty-print-json-in-java
+ *
+ *  @author Allen Qian
  */
 public class JsonStringFormatter {
     public static String prettyJsonFormat(String uglyJsonString) {

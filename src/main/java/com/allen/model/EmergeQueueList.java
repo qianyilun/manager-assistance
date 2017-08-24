@@ -7,6 +7,8 @@ import java.util.List;
 ** This class is to save all incidents that are about expired.
 *
 * The final purpose is to display in the GUI.
+*
+* @author Allen Qian
  */
 public class EmergeQueueList {
     private List<DATA> lst = new ArrayList<>();
