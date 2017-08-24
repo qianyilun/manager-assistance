@@ -40,7 +40,7 @@ public class QueueManager {
 
 
 
-/*
+
          ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
         cc = new ConnectionConfiguration(queueID);
@@ -52,7 +52,6 @@ public class QueueManager {
 
          ////////////////////////////////////////////////////////////////////
 
-*/
 
 
 
@@ -63,6 +62,7 @@ public class QueueManager {
 
 
 
+/*
     // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
         // --------- Get 'incidents' in Test raw Json String ---------
@@ -70,7 +70,7 @@ public class QueueManager {
         incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
 
-
+*/
 
 
 
@@ -94,8 +94,9 @@ public class QueueManager {
         for (DATA data : incidentsInfo) {
             IRT irt = new IRT(data.getIRT_EXPIRY());
 
-            System.out.println(irt);
             if (data.hasValidIRT()) {
+                System.out.println(data);
+
                 if (irt.isLessThan(30)) {
                     emergeQueueList.addIncidentToArray(data);
                 } else if (irt.isLessThan(45)) {

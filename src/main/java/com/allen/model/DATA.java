@@ -698,7 +698,7 @@ public class DATA implements Comparable<DATA>{
     // if the IRT shows 'OK' --> invalid
     // if the IRT shows traffic light --> valid
     public boolean hasValidIRT() {
-        if (LAST_CHANGED_AT_SAP.equals("0")) {
+        if (STATUS_DESCR.equals("New")) {
             return true;
         }
         return false;
