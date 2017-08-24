@@ -12,6 +12,8 @@ import java.util.TimerTask;
  * Created by yilunq on 12/08/17.
  *
  * This is the Main function to execute
+ *
+ * @author Allen Qian
  */
 public class Main {
     private static Timer timer;
