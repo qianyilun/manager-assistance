@@ -11,6 +11,7 @@ package com.allen.controller;
  * https://www.youtube.com/watch?v=UMfjndwGwnM
  * @author Naveen
  */
+import java.io.FileNotFoundException;
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -18,8 +19,18 @@ import javax.mail.internet.MimeMessage;
 
 
 public class EmailSend {
+    private static List<String> emailList = new ArrayList<>();
+
+    private static void assignEmailList() {
+        try {
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void send(String content){
+        assignEmailList();
         try{
             String host ="smtp.gmail.com" ;
             String user = "queuemanager.epm@gmail.com";
