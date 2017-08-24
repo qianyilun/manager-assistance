@@ -269,6 +269,7 @@ public class MultiDialogNew {
     }
 
     // protect the incident from Queue Manager is leave computer alone
+    // https://www.youtube.com/watch?v=Euexl32lB8w
     private void detectHelper() {
         timer = new Timer();
         counter = 600;
