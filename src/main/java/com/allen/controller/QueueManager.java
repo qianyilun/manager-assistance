@@ -18,6 +18,8 @@ import java.util.TimerTask;
  * Created by yilunq on 12/08/17.
  *
  * This class is a manager to organize and manage the interactive of all classes
+ *
+ * @author Allen Qian
  */
 public class QueueManager {
     private String queueID;
