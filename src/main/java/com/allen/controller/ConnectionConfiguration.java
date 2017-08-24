@@ -10,6 +10,8 @@ import java.sql.Driver;
  * Created by yilunq on 12/08/17.
  *
  * This class operates the connection to SAP BCP via Selenium
+ *
+ * @author Allen Qian
  */
 public class ConnectionConfiguration {
     private final String firstHalf = "https://support.wdf.sap.corp/sap/bc/devdb/saved_search?sap-client=001&search_id=";

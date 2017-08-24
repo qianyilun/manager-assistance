@@ -8,6 +8,8 @@ import java.util.Date;
  * Created by yilunq on 12/08/17.
  *
  * This class is to parse and analysis IRT
+ *
+ * @author Allen Qian
  */
 
 public class IRT {

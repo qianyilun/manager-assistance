@@ -6,11 +6,11 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 /*
-** This class is to open a link in browser with java button
-*
-* https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
-*
-* @Allen Qian
+ ** This class is to open a link in browser with java button
+ *
+ * https://stackoverflow.com/questions/10967451/open-a-link-in-browser-with-java-button
+ *
+ * @author Allen Qian
  */
 
 public class OpenURL {

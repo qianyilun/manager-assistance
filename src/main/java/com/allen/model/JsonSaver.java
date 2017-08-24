@@ -6,6 +6,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/*
+ * This class is to save a Web json source code to a json file as a backup log
+ *
+ * @author Allen Qian
+ */
+
 public class JsonSaver {
     // https://stackoverflow.com/questions/1053467/how-do-i-save-a-string-to-a-text-file-using-java
     public static void save(String formattedJson) {
