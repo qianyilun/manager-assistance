@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by allen on 10/08/17.
@@ -748,8 +749,15 @@ public class DATA implements Comparable<DATA>{
 
         // compare with local time
 
-        int difference = localCalendar.compareTo(bcpCalendar);
-        System.out.println(difference);
+        int difference = (int) minutesBetween(bcpCalendar, localCalendar);
+        System.out.println("difference is " + difference);
         return difference;
+    }
+
+    // https://stackoverflow.com/questions/19462912/how-to-get-number-of-days-between-two-calendar-instance
+    private static long minutesBetween(Calendar bcpDate, Calendar localDate) {
+        long bcp = bcpDate.getTimeInMillis();
+        long local = localDate.getTimeInMillis();
+        return TimeUnit.MILLISECONDS.toMinutes(bcp - local);
     }
 }
