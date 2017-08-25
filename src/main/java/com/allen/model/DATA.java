@@ -2,6 +2,7 @@ package com.allen.model;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -720,20 +721,35 @@ public class DATA implements Comparable<DATA>{
         }
     }
 
-    public String hasMinutesLeft() {
-        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-        String currentTime = dateFormat.format(new Date()).substring(8,12);
-        String irtTime = "" + (new IRT(IRT_EXPIRY).getHour()-7) + new IRT(IRT_EXPIRY).getMinute();
-        long difference = 0;
+//    public String hasMinutesLeft() {
+//        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+//        String currentTime = dateFormat.format(new Date()).substring(8,12);
+//        String irtTime = "" + (new IRT(IRT_EXPIRY).getHour()-7) + new IRT(IRT_EXPIRY).getMinute();
+//        long difference = 0;
+//
+//        try {
+//            SimpleDateFormat format = new SimpleDateFormat("HHmm");
+//            Date date1 = format.parse(irtTime);
+//            Date date2 = format.parse(currentTime);
+//            difference = (date1.getTime() - date2.getTime()) / 60 / 1000;
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return ""+ difference;
+//    }
 
-        try {
-            SimpleDateFormat format = new SimpleDateFormat("HHmm");
-            Date date1 = format.parse(irtTime);
-            Date date2 = format.parse(currentTime);
-            difference = (date1.getTime() - date2.getTime()) / 60 / 1000;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ""+ difference;
+    public int hasMinutesLeft() {
+        // convert bcp from String to Calendar object
+        TimeZoneConverter converter = new TimeZoneConverter();
+        converter.convert(IRT_EXPIRY);
+        Calendar bcpCalendar = converter.getCalendar();
+
+        Calendar localCalendar = Calendar.getInstance();
+
+        // compare with local time
+
+        int difference = localCalendar.compareTo(bcpCalendar);
+        System.out.println(difference);
+        return difference;
     }
 }

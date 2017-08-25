@@ -1,3 +1,4 @@
+import com.allen.model.TimeZoneConverter;
 import com.allen.view.single_dialog.SingleDialogNew;
 
 import java.io.File;
@@ -49,6 +50,11 @@ public class Test {
 //        countDownTimer();
 
         TimeZone();
+
+        TimeZoneConverter tzc = new TimeZoneConverter();
+        tzc.convert("20170828220000");
+        Calendar calendar = tzc.getCalendar();
+
     }
 
 
@@ -72,7 +78,7 @@ public class Test {
 
 
             // Print the local time
-            System.out.printf("Local time  : %02d:%02d:%02d\n", hour, minute, second);
+            System.out.printf("Local time  : %02d:%02d:%02d:%02d:%02d:%02d\n", year, month, date, hour, minute, second);
 
 
             // Create a calendar object for representing a Germany time zone. Then we
