@@ -10,12 +10,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 public class TimeZoneConverter {
-    private Calendar calendar = Calendar.getInstance();
+    private Calendar bcpLocalCalendar = Calendar.getInstance();
 
     public Calendar getCalendar() {
-        return calendar;
+        return bcpLocalCalendar;
     }
 
     public void convert(String bcpTime) {
@@ -27,8 +29,27 @@ public class TimeZoneConverter {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        calendar.setTime(date);
+        Calendar bcpSystemCalendar = Calendar.getInstance();
+        bcpSystemCalendar.setTime(date);
 
-        // convert local Calendar to bcp Calendar
+        
+
+        // convert bcp Calendar to local Calendar
+        bcpLocalCalendar = new GregorianCalendar(Calendar.getInstance().getTimeZone());
+        bcpLocalCalendar.setTimeInMillis(bcpSystemCalendar.getTimeInMillis());
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
+        int year = bcpLocalCalendar.get(Calendar.YEAR);
+        int month = bcpLocalCalendar.get(Calendar.MONTH);
+        int date = bcpLocalCalendar.get(Calendar.DAY_OF_MONTH);
+        int hour = bcpLocalCalendar.get(Calendar.HOUR);
+        int minute = bcpLocalCalendar.get(Calendar.MINUTE);
+        int second = bcpLocalCalendar.get(Calendar.SECOND);
+
+        return "bcp to local time: " + "year = " + year + ", month = " + month + " , date = " + date +" , hour = " + hour
+                + ", minutes = " + minute + ", second = " + second;
     }
 }
