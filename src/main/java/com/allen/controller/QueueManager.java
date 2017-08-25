@@ -40,7 +40,7 @@ public class QueueManager {
 
 
 
-
+/*
          ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
         cc = new ConnectionConfiguration(queueID);
@@ -52,6 +52,7 @@ public class QueueManager {
 
          ////////////////////////////////////////////////////////////////////
 
+*/
 
 
 
@@ -62,7 +63,6 @@ public class QueueManager {
 
 
 
-/*
     // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
         // --------- Get 'incidents' in Test raw Json String ---------
@@ -70,7 +70,7 @@ public class QueueManager {
         incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
 
-*/
+
 
 
 
@@ -97,9 +97,9 @@ public class QueueManager {
             if (data.hasValidIRT()) {
                 System.out.println(data);
 
-                if (irt.isLessThan(30)) {
+                if (data.hasMinutesLeft() < 30) {
                     emergeQueueList.addIncidentToArray(data);
-                } else if (irt.isLessThan(45)) {
+                } else if (data.hasMinutesLeft() < 45) {
                     // set timer first, then launch the view in another Thread (Swing will create new thread for each view automatically)
                     Timer timer = new Timer();
                     TimerTask task = new TimerTask() {
