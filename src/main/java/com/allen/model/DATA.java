@@ -742,7 +742,21 @@ public class DATA implements Comparable<DATA>{
     public int hasMinutesLeft() {
         // convert bcp from String to Calendar object
         TimeZoneConverter converter = new TimeZoneConverter();
-        converter.convert(IRT_EXPIRY);
+        IRT irt = new IRT(IRT_EXPIRY);
+        System.out.println(irt);
+        String year = "" + irt.getYear();
+        String month;
+        String dayOfMonth;
+        if (irt.getDate() < 1000) {
+            month = ("" + irt.getDate()).substring(0, 1);
+            dayOfMonth = ("" + irt.getDate()).substring(1, 3);
+        } else {
+            month = ("" + irt.getDate()).substring(0, 2);
+            dayOfMonth = ("" + irt.getDate()).substring(2, 4);
+        }
+        String hour = "" + irt.getHour();
+        String minute = "" + irt.getMinute();
+        converter.convert(year, month, dayOfMonth, hour, minute);
         Calendar bcpCalendar = converter.getCalendar();
 
         Calendar localCalendar = Calendar.getInstance();
@@ -750,7 +764,7 @@ public class DATA implements Comparable<DATA>{
         // compare with local time
 
         int difference = (int) minutesBetween(bcpCalendar, localCalendar);
-        System.out.println("difference is " + difference);
+//        System.out.println("difference is " + difference);
         return difference;
     }
 

@@ -67,7 +67,7 @@ public class QueueManager {
                                                                             //**
         // --------- Get 'incidents' in Test raw Json String ---------
         jsonSourceCode = TestJSON.pageSource;
-        incidentsInfo = parseJson(TestJSON.pageSource2).getDATA();
+        incidentsInfo = parseJson(TestJSON.pageSource3).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
 
 
@@ -95,7 +95,7 @@ public class QueueManager {
             IRT irt = new IRT(data.getIRT_EXPIRY());
 
             if (data.hasValidIRT()) {
-                System.out.println(data);
+                System.out.println("valid IRT");
 
                 if (data.hasMinutesLeft() < 30) {
                     emergeQueueList.addIncidentToArray(data);
