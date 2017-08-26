@@ -51,9 +51,11 @@ public class Test {
 
         TimeZone();
 
+        System.out.println(new Integer("08"));
+
         TimeZoneConverter tzc = new TimeZoneConverter();
-        tzc.convert("20170828220000");
-        Calendar calendar = tzc.getCalendar();
+//        tzc.convert("20170828220000");
+//        Calendar calendar = tzc.getCalendar();
 
     }
 

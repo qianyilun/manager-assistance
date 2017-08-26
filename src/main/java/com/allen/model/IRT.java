@@ -96,6 +96,6 @@ public class IRT {
 
     @Override
     public String toString() {
-        return "[Class IRT = "+"Year = "+year+", Date = "+date+", Hour = "+(hour-7)+", Minute = "+minute+"]";
+        return "[Class IRT = "+"Year = "+year+", Date = "+date+", Hour = "+(hour)+", Minute = "+minute+"]";
     }
 }
