@@ -1,3 +1,4 @@
+import com.allen.model.DATA;
 import com.allen.model.IRT;
 import com.allen.model.TimeZoneConverter;
 import com.allen.view.single_dialog.SingleDialogNew;
@@ -65,10 +66,6 @@ public class Test {
         irt = new IRT("20170701010048");
 
 
-
-
-
-        //        System.out.println(irt);
 
 //        TimeZoneConverter tzc = new TimeZoneConverter();
 //        tzc.convert("20170828220000");

@@ -722,50 +722,41 @@ public class DATA implements Comparable<DATA>{
         }
     }
 
-//    public String hasMinutesLeft() {
-//        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
-//        String currentTime = dateFormat.format(new Date()).substring(8,12);
-//        String irtTime = "" + (new IRT(IRT_EXPIRY).getHour()-7) + new IRT(IRT_EXPIRY).getMinute();
-//        long difference = 0;
-//
-//        try {
-//            SimpleDateFormat format = new SimpleDateFormat("HHmm");
-//            Date date1 = format.parse(irtTime);
-//            Date date2 = format.parse(currentTime);
-//            difference = (date1.getTime() - date2.getTime()) / 60 / 1000;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return ""+ difference;
-//    }
+    public long calculateMinutes(String currentTime, String irtTime) {
+        long difference = 0;
 
-    public int hasMinutesLeft() {
-        // convert bcp from String to Calendar object
-        TimeZoneConverter converter = new TimeZoneConverter();
-        IRT irt = new IRT(IRT_EXPIRY);
-        System.out.println(irt);
-        String year = "" + irt.getYear();
-        String month;
-        String dayOfMonth;
-        if (irt.getDate() < 1000) {
-            month = ("" + irt.getDate()).substring(0, 1);
-            dayOfMonth = ("" + irt.getDate()).substring(1, 3);
-        } else {
-            month = ("" + irt.getDate()).substring(0, 2);
-            dayOfMonth = ("" + irt.getDate()).substring(2, 4);
+        try {
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+            Date irtDate = format.parse(irtTime);
+            Date currentDate = format.parse(currentTime);
+            difference = (irtDate.getTime() - currentDate.getTime()) / 60  / 1000;
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        String hour = "" + irt.getHour();
-        String minute = "" + irt.getMinute();
-        converter.convert(year, month, dayOfMonth, hour, minute);
-        Calendar bcpCalendar = converter.getCalendar();
 
-        Calendar localCalendar = Calendar.getInstance();
-
-        // compare with local time
-
-        int difference = (int) minutesBetween(bcpCalendar, localCalendar);
-//        System.out.println("difference is " + difference);
+        System.out.println(difference);
         return difference;
+    }
+
+    public long hasMinutesLeft() {
+        // get current time stamp
+        String currentTimestamp = getCurrentTime();
+
+        // convert current time stamp to system irt format
+        Long currentTime_BCPformate = new Long(currentTimestamp);
+        currentTime_BCPformate += 70000;
+
+        // calculate the time stamp difference
+        long difference = calculateMinutes(""+currentTime_BCPformate, IRT_EXPIRY);
+
+        return difference;
+    }
+
+
+    public String getCurrentTime() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String currentTime = dateFormat.format(new Date());
+        return currentTime;
     }
 
     // https://stackoverflow.com/questions/19462912/how-to-get-number-of-days-between-two-calendar-instance
