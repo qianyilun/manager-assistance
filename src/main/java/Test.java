@@ -1,3 +1,4 @@
+import com.allen.model.IRT;
 import com.allen.model.TimeZoneConverter;
 import com.allen.view.single_dialog.SingleDialogNew;
 
@@ -53,7 +54,23 @@ public class Test {
 
         System.out.println(new Integer("08"));
 
-        TimeZoneConverter tzc = new TimeZoneConverter();
+
+        IRT irt = new IRT("20170825250048");
+        irt = new IRT("20170825010048");
+
+        irt = new IRT("20170801250048");
+        irt = new IRT("20170801010048");
+        irt = new IRT("20170101250048");
+        irt = new IRT("20170101010048");
+        irt = new IRT("20170701010048");
+
+
+
+
+
+        //        System.out.println(irt);
+
+//        TimeZoneConverter tzc = new TimeZoneConverter();
 //        tzc.convert("20170828220000");
 //        Calendar calendar = tzc.getCalendar();
 
@@ -67,7 +84,7 @@ public class Test {
             localTime.set(Calendar.YEAR, 2017);
             localTime.set(Calendar.MONTH, 8);
             localTime.set(Calendar.DAY_OF_MONTH, 24);
-            localTime.set(Calendar.HOUR, 16);
+            localTime.set(Calendar.HOUR, -2);
             localTime.set(Calendar.MINUTE, 15);
             localTime.set(Calendar.SECOND, 20);
 
@@ -123,8 +140,7 @@ public class Test {
 
 
     static String readFile(String path)
-            throws IOException
-    {
+            throws IOException {
         byte[] encoded = Files.readAllBytes(Paths.get(path));
         return new String(encoded, Charset.defaultCharset());
     }
