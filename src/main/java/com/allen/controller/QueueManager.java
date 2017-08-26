@@ -109,7 +109,7 @@ public class QueueManager {
                             timer.cancel();
                         }
                     };
-                    timer.schedule(task, (new Integer(data.hasMinutesLeft())-30) *   // minutes to sleep
+                    timer.schedule(task, (new Long(data.hasMinutesLeft())-30) *   // minutes to sleep
                             60 *   // seconds to a minute
                             1000);
                 }
