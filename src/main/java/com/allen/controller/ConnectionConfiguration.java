@@ -45,10 +45,9 @@ public class ConnectionConfiguration {
 
     private WebDriver openDriver(String url) {
 
+/*  ------------ Use Chrome Driver -------------------
         String key = "webdriver.chrome.driver";
         String value = getOSValue();
-
-/*  Use Chrome Driver
         System.setProperty(key, value);
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
