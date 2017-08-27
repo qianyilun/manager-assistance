@@ -18,8 +18,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.*;
+import java.util.List;
 import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  * This class is to display one single incident information
@@ -54,7 +55,7 @@ public class MultiDialogNew {
 
         String content = "";
         for (DATA incident : emergeQueueList.getLst()) {
-            content = content + "\n * " + incident.getDESCRIPTION() + ": has " + (incident.hasMinutesLeft()-10) + " minutes to expire\n" + incident.getURL_MESSAGE();
+            content = content + "\n * " + incident.getDESCRIPTION() + ": has " + (incident.hasMinutesLeft()) + " minutes to expire\n" + incident.getURL_MESSAGE();
         }
         EmailSend.send(content);
     }
@@ -92,11 +93,18 @@ public class MultiDialogNew {
             @Override
             public void run() {
                 counter = 600;
+
+                // change the countdown timer for all children
+                for (Map.Entry<DefaultMutableTreeNode, DATA> entry : map.entrySet()) {
+                    entry.getKey().setUserObject("<" + entry.getValue().getOBJECT_ID() + ">: within "
+                            + entry.getValue().hasMinutesLeft() + " minutes" + (entry.getValue().hasMinutesLeft()));
+                }
+
                 frame.setVisible(true);
             }
         };
 
-        timer.schedule(task, 9 *   // minutes to sleep
+        timer.schedule(task, 1 *   // minutes to sleep
                 60 *   // seconds to a minute
                 1000); // milliseconds to a second
 
@@ -250,6 +258,8 @@ public class MultiDialogNew {
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     private int counter;
     private Timer timer;
+    private Map<DefaultMutableTreeNode, DATA> map = new HashMap<>();
+    private List<DefaultMutableTreeNode> lst = new ArrayList<>();
 
     private void addIncidentToTreeView() {
         treeView.setModel(new DefaultTreeModel(
@@ -263,6 +273,8 @@ public class MultiDialogNew {
                             node1.add(new DefaultMutableTreeNode("Priority: " + incident.getPRIORITY_DESCR()));
                             node1.add(new DefaultMutableTreeNode("Link: " + incident.getURL_MESSAGE()));
                             add(node1);
+
+                            map.put(node1, incident);
                         }
                     }
                 }));

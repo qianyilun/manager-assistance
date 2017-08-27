@@ -12,6 +12,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.*;
@@ -50,7 +52,7 @@ public class SingleDialogNew {
         System.out.println("send emails");
         frame.dispose(); // dispose frame first since it can "speed up" action time
 
-        String content = "\n * " + incident.getDESCRIPTION() + ": has " + (incident.hasMinutesLeft()-10) + " minutes to expire\n" + incident.getURL_MESSAGE();
+        String content = "\n * " + incident.getDESCRIPTION() + ": has " + (incident.hasMinutesLeft()) + " minutes to expire\n" + incident.getURL_MESSAGE();
         EmailSend.send(content);
     }
 
@@ -85,11 +87,18 @@ public class SingleDialogNew {
             @Override
             public void run() {
                 counter = 600;
+
+                // change the countdown timer for all children
+                for (Map.Entry<DefaultMutableTreeNode, DATA> entry : map.entrySet()) {
+                    entry.getKey().setUserObject("<" + entry.getValue().getOBJECT_ID() + ">: within "
+                            + entry.getValue().hasMinutesLeft() + " minutes" + (entry.getValue().hasMinutesLeft()));
+                }
+
                 frame.setVisible(true);
             }
         };
 
-        timer.schedule(task, 9 *   // minutes to sleep
+        timer.schedule(task, 1 *   // minutes to sleep
                                   60 *   // seconds to a minute
                                   1000); // milliseconds to a second
 
@@ -243,6 +252,8 @@ public class SingleDialogNew {
     // JFormDesigner - End of variables declaration  //GEN-END:variables
     private int counter;
     private Timer timer;
+    private Map<DefaultMutableTreeNode, DATA> map = new HashMap<>();
+
 
     private void addIncidentToTreeView() {
         treeView.setModel(new DefaultTreeModel(
@@ -255,6 +266,8 @@ public class SingleDialogNew {
                         node1.add(new DefaultMutableTreeNode("Priority: " + incident.getPRIORITY_DESCR()));
                         node1.add(new DefaultMutableTreeNode("Link: " + incident.getURL_MESSAGE()));
                         add(node1);
+
+                        map.put(node1, incident);
                     }
                 }));
     }
