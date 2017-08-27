@@ -66,6 +66,8 @@ public class Test {
         irt = new IRT("20170701010048");
 
 
+        gettimeZone();
+
 
 //        TimeZoneConverter tzc = new TimeZoneConverter();
 //        tzc.convert("20170828220000");
@@ -158,5 +160,11 @@ public class Test {
             }
         };
         timer.scheduleAtFixedRate(task, 1000,1000);
+    }
+
+    public static void gettimeZone() {
+        TimeZone tz = Calendar.getInstance().getTimeZone();
+        System.out.println(tz.getDisplayName()); // (i.e. Moscow Standard Time)
+        System.out.println(tz.getID()); // (i.e. Europe/Moscow)
     }
 }

@@ -12,6 +12,8 @@ package com.allen.view.start_page;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Calendar;
+import java.util.TimeZone;
 import javax.swing.*;
 import javax.swing.GroupLayout;
 
@@ -33,14 +35,20 @@ public class StartPageNew {
         // Generated using JFormDesigner Evaluation license - a aa
         frame = new JFrame();
         mainPanel = new JPanel();
-        closeBtn = new JButton();
         content = new JLabel();
+        panel1 = new JPanel();
+        closeBtn = new JButton();
+        panel2 = new JPanel();
+        timeZone = new JLabel();
 
         //======== frame ========
         {
             frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             frame.setName("Welcome!");
             frame.setVisible(true);
+            frame.setAlwaysOnTop(true);
+            frame.setTitle("Run successfully!");
+            frame.setResizable(false);
             Container frameContentPane = frame.getContentPane();
 
             //======== mainPanel ========
@@ -53,37 +61,31 @@ public class StartPageNew {
                         javax.swing.border.TitledBorder.BOTTOM, new java.awt.Font("Dialog", java.awt.Font.BOLD, 12),
                         java.awt.Color.red), mainPanel.getBorder())); mainPanel.addPropertyChangeListener(new java.beans.PropertyChangeListener(){public void propertyChange(java.beans.PropertyChangeEvent e){if("border".equals(e.getPropertyName()))throw new RuntimeException();}});
 
-
-                //---- closeBtn ----
-                closeBtn.setText("Dismiss");
-                closeBtn.addActionListener(e -> closeBtnActionPerformed(e));
+                mainPanel.setLayout(new FlowLayout());
 
                 //---- content ----
                 content.setText("Your Queue Manager is running now...");
                 content.setFont(content.getFont().deriveFont(content.getFont().getSize() + 5f));
+                mainPanel.add(content);
+            }
 
-                GroupLayout mainPanelLayout = new GroupLayout(mainPanel);
-                mainPanel.setLayout(mainPanelLayout);
-                mainPanelLayout.setHorizontalGroup(
-                    mainPanelLayout.createParallelGroup()
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addContainerGap(224, Short.MAX_VALUE)
-                            .addComponent(content)
-                            .addGap(217, 217, 217))
-                        .addGroup(mainPanelLayout.createSequentialGroup()
-                            .addGap(429, 429, 429)
-                            .addComponent(closeBtn)
-                            .addContainerGap(434, Short.MAX_VALUE))
-                );
-                mainPanelLayout.setVerticalGroup(
-                    mainPanelLayout.createParallelGroup()
-                        .addGroup(GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                            .addContainerGap(67, Short.MAX_VALUE)
-                            .addComponent(content)
-                            .addGap(50, 50, 50)
-                            .addComponent(closeBtn)
-                            .addGap(58, 58, 58))
-                );
+            //======== panel1 ========
+            {
+                panel1.setLayout(new FlowLayout());
+
+                //---- closeBtn ----
+                closeBtn.setText("Dismiss");
+                closeBtn.addActionListener(e -> closeBtnActionPerformed(e));
+                panel1.add(closeBtn);
+            }
+
+            //======== panel2 ========
+            {
+                panel2.setLayout(new FlowLayout());
+
+                //---- timeZone ----
+                timeZone.setText("_default_");
+                panel2.add(timeZone);
             }
 
             GroupLayout frameContentPaneLayout = new GroupLayout(frameContentPane);
@@ -92,18 +94,26 @@ public class StartPageNew {
                 frameContentPaneLayout.createParallelGroup()
                     .addGroup(frameContentPaneLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(15, 15, 15))
+                        .addGroup(frameContentPaneLayout.createParallelGroup()
+                            .addComponent(panel1, GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
+                            .addComponent(mainPanel, GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE)
+                            .addComponent(panel2, GroupLayout.DEFAULT_SIZE, 1039, Short.MAX_VALUE))
+                        .addContainerGap())
             );
             frameContentPaneLayout.setVerticalGroup(
                 frameContentPaneLayout.createParallelGroup()
                     .addGroup(frameContentPaneLayout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
+                        .addComponent(mainPanel, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addComponent(panel2, GroupLayout.PREFERRED_SIZE, 88, GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(panel1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                        .addGap(40, 40, 40))
             );
             frame.pack();
             frame.setLocationRelativeTo(frame.getOwner());
+            setTimezoneLabel();
         }
         // JFormDesigner - End of component initialization  //GEN-END:initComponents
     }
@@ -112,7 +122,18 @@ public class StartPageNew {
     // Generated using JFormDesigner Evaluation license - a aa
     private JFrame frame;
     private JPanel mainPanel;
-    private JButton closeBtn;
     private JLabel content;
+    private JPanel panel1;
+    private JButton closeBtn;
+    private JPanel panel2;
+    private JLabel timeZone;
     // JFormDesigner - End of variables declaration  //GEN-END:variables
+
+    private void setTimezoneLabel() {
+        TimeZone tz = Calendar.getInstance().getTimeZone();
+
+        System.out.println("Time Zone: " + tz.getDisplayName() + ",   " + tz.getID());
+        timeZone.setText("Time Zone: " + tz.getDisplayName() + ",   " + tz.getID());
+    }
+
 }
