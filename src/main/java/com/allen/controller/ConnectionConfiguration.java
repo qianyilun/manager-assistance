@@ -3,6 +3,7 @@ package com.allen.controller;
 import com.sun.javafx.PlatformUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import java.sql.Driver;
 
@@ -45,13 +46,17 @@ public class ConnectionConfiguration {
     private WebDriver openDriver(String url) {
 
         String key = "webdriver.chrome.driver";
-        System.out.println("value");
         String value = getOSValue();
-        System.out.println(value);
-        System.setProperty(key, value);
 
+/*  Use Chrome Driver
+        System.setProperty(key, value);
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
+*/
+
+        // use HtmlUnit driver
+        WebDriver driver = new HtmlUnitDriver();
+
         driver.get(url);
         return driver;
     }
