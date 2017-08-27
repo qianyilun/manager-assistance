@@ -4,32 +4,42 @@ new FormModel {
 	contentType: "form/swing"
 	root: new FormRoot {
 		add( new FormWindow( "javax.swing.JFrame", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-			"$horizontalGroup": "par l {seq l {space :::p, comp mainPanel:::::x, space :p:15:p}}"
-			"$verticalGroup": "par l {seq l {space :p:34:p, comp mainPanel:::p::p, space :::x}}"
+			"$horizontalGroup": "par l {seq {space :::p, par l {comp panel1::::1039:x, comp mainPanel::::1039:x, comp panel2::l::1039:x}, space :::p}}"
+			"$verticalGroup": "par l {seq l {space :p:54:p, comp mainPanel:::p:62:p, space s:::x, comp panel2:::p:88:p, space :p:28:p, comp panel1:::p::p, space :p:40:p}}"
 		} ) {
 			name: "frame"
 			"defaultCloseOperation": 2
 			"name": "Welcome!"
 			"visible": true
-			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class org.jdesktop.layout.GroupLayout ) {
-				"$horizontalGroup": "par l {seq {space ::224:x, comp content:::p::p, space :p:217:p}, seq l {space :p:429:p, comp closeBtn:::::p, space ::434:x}}"
-				"$verticalGroup": "par l {seq t {space ::67:x, comp content:::p::p, space :p:50:p, comp closeBtn:::p::p, space :p:58:p}}"
-			} ) {
+			"alwaysOnTop": true
+			"title": "Run successfully!"
+			"resizable": false
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
 				name: "mainPanel"
-				add( new FormComponent( "javax.swing.JButton" ) {
-					name: "closeBtn"
-					"text": "Dismiss"
-					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "closeBtnActionPerformed", true ) )
-				} )
 				add( new FormComponent( "javax.swing.JLabel" ) {
 					name: "content"
 					"text": "Your Queue Manager is running now..."
 					"font": new com.jformdesigner.model.SwingDerivedFont( null, 0, 5, false )
 				} )
 			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+				name: "panel1"
+				add( new FormComponent( "javax.swing.JButton" ) {
+					name: "closeBtn"
+					"text": "Dismiss"
+					addEvent( new FormEvent( "java.awt.event.ActionListener", "actionPerformed", "closeBtnActionPerformed", true ) )
+				} )
+			} )
+			add( new FormContainer( "javax.swing.JPanel", new FormLayoutManager( class java.awt.FlowLayout ) ) {
+				name: "panel2"
+				add( new FormComponent( "javax.swing.JLabel" ) {
+					name: "timeZone"
+					"text": "_default_"
+				} )
+			} )
 		}, new FormLayoutConstraints( null ) {
 			"location": new java.awt.Point( 83, 137 )
-			"size": new java.awt.Dimension( 469, 151 )
+			"size": new java.awt.Dimension( 469, 171 )
 		} )
 	}
 }
