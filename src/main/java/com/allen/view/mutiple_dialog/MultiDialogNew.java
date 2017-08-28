@@ -97,14 +97,14 @@ public class MultiDialogNew {
                 // change the countdown timer for all children
                 for (Map.Entry<DefaultMutableTreeNode, DATA> entry : map.entrySet()) {
                     entry.getKey().setUserObject("<" + entry.getValue().getOBJECT_ID() + ">: within "
-                            + entry.getValue().hasMinutesLeft() + " minutes" + (entry.getValue().hasMinutesLeft()));
+                            + entry.getValue().hasMinutesLeft() + " minutes");
                 }
 
                 frame.setVisible(true);
             }
         };
 
-        timer.schedule(task, 1 *   // minutes to sleep
+        timer.schedule(task, 9 *   // minutes to sleep
                 60 *   // seconds to a minute
                 1000); // milliseconds to a second
 

@@ -45,16 +45,17 @@ public class ConnectionConfiguration {
 
     private WebDriver openDriver(String url) {
 
-/*  ------------ Use Chrome Driver -------------------
+//  ------------ Use Chrome Driver -------------------
         String key = "webdriver.chrome.driver";
         String value = getOSValue();
         System.setProperty(key, value);
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
-*/
+
 
         // use HtmlUnit driver
-        WebDriver driver = new HtmlUnitDriver();
+//        WebDriver driver = new HtmlUnitDriver();
+
 
         driver.get(url);
         return driver;
@@ -76,7 +77,7 @@ public class ConnectionConfiguration {
             return ".src/chromedriver/Mac/chromedriver";
         }
         if (PlatformUtil.isWin7OrLater()) {
-            return "C:\\Users\\I860745\\Documents\\Projects\\QueueManager_SAP\\src\\chromedriver\\Windows\\chromedriver.exe";
+            return "src/chromedriver/Windows/chromedriver.exe";
         }
         if (PlatformUtil.isLinux()) {
             return "./src/chromedriver/Linux64/chromedriver";

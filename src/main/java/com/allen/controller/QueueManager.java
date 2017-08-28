@@ -51,8 +51,8 @@ public class QueueManager {
         incidentsInfo = parseJson(jsonSourceCode).getDATA();
 
          ////////////////////////////////////////////////////////////////////
-
 */
+
 
 
 
