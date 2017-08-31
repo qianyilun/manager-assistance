@@ -57,26 +57,25 @@ public class EmailSend {
         loadEmailList();
         try{
             String emailContentFilePath = "email content.txt";
-            String host ="smtp.gmail.com" ;
-            String user = "queuemanager.epm@gmail.com";
-            String pass = "vz3AWAvvV";
-            String from = "queuemanager.epm@gmail.com";
+            String host ="mail.sap.corp" ;
+//            String user = "queuemanager.epm@gmail.com";
+//            String pass = "vz3AWAvvV";
+            String from = "allen.qian@sap.com";
             String subject = "Queue Manager Automatically Send.";
             String messageText = loadEmailContent(emailContentFilePath) + "\n\n" + content;
             boolean sessionDebug = false;
 
             Properties props = System.getProperties();
 
-            props.put("mail.smtp.starttls.enable", "true");
+//            props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.host", host);
-            props.put("mail.smtp.port", "587");
-            props.put("mail.smtp.auth", "true");
-            props.put("mail.smtp.starttls.required", "true");
+            props.put("mail.smtp.port", "25");
+//            props.put("mail.smtp.auth", "true");
+//            props.put("mail.smtp.starttls.required", "true");
 
-            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+            //            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             Session mailSession = Session.getDefaultInstance(props, null);
             mailSession.setDebug(sessionDebug);
-            Transport transport = null;
 
             // send multiple emails
             for (String emailAdress : emailList) {
@@ -89,13 +88,15 @@ public class EmailSend {
                 msg.setSentDate(new Date());
                 msg.setText(messageText);
 
-                transport = mailSession.getTransport("smtp");
-                transport.connect(host, user, pass);
-                transport.sendMessage(msg, msg.getAllRecipients());
+                //                transport = mailSession.getTransport("smtp");
+//                transport.connect(host, user, pass);
+
+//                transport.connect(host, user, pass);
+                Transport.send(msg);
+
 
             }
 
-            transport.close();
             System.out.println("message send successfully");
         }catch(Exception ex)  {
             System.out.println(ex);
