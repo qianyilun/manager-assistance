@@ -76,13 +76,16 @@ public class ConnectionConfiguration {
  */
     private static String getOSValue() {
         if (PlatformUtil.isMac()) {
-            return ".src/chromedriver/Mac/chromedriver";
+//            return ".src/chromedriver/Mac/chromedriver";
+            return "/chromedriver/Mac/chromedriver";
         }
         if (PlatformUtil.isWin7OrLater()) {
-            return "src/chromedriver/Windows/chromedriver.exe";
+//            return "src/chromedriver/Windows/chromedriver.exe";
+            return System.getProperty("user.dir")+"/chromedriver/Windows/chromedriver.exe";
         }
         if (PlatformUtil.isLinux()) {
-            return "./src/chromedriver/Linux64/chromedriver";
+//            return "./src/chromedriver/Linux64/chromedriver";
+            return "/chromedriver/Linux64/chromedriver";
         }
         return null;
     }

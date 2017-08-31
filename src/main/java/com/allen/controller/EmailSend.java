@@ -33,7 +33,7 @@ public class EmailSend {
     private static List<String> emailList = new ArrayList<>();
 
     private static void loadEmailList() {
-        File file = new File("email list.txt");
+        File file = new File("resource/email list.txt");
         try {
             Scanner sc = new Scanner(file);
 
@@ -58,7 +58,7 @@ public class EmailSend {
     public static void send(String content){
         loadEmailList();
         try{
-            String emailContentFilePath = "email content.txt";
+            String emailContentFilePath = "resource/email content.txt";
             String host ="mail.sap.corp" ;
             String from = "allen.qian@sap.com";
             String subject = "Queue Manager Automatically Send.";
