@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
+import javax.swing.*;
 import java.sql.Driver;
 
 /**
@@ -36,6 +37,7 @@ public class ConnectionConfiguration {
             jsonSourceCode = pureJsonString(driver);
         } catch (Exception e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         } finally {
             if (driver != null) {
                 driver.close();

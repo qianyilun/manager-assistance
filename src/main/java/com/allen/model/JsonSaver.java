@@ -1,5 +1,6 @@
 package com.allen.model;
 
+import javax.swing.*;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class JsonSaver {
         }
         catch (IOException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         finally {
             try {
@@ -31,6 +33,7 @@ public class JsonSaver {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     }

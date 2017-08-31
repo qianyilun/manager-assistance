@@ -22,6 +22,7 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 import javax.mail.internet.MimeMessage;
+import javax.swing.*;
 
 
 public class EmailSend {
@@ -42,6 +43,7 @@ public class EmailSend {
             sc.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         System.out.println(emailList);
     }
@@ -58,22 +60,14 @@ public class EmailSend {
         try{
             String emailContentFilePath = "email content.txt";
             String host ="mail.sap.corp" ;
-//            String user = "queuemanager.epm@gmail.com";
-//            String pass = "vz3AWAvvV";
             String from = "allen.qian@sap.com";
             String subject = "Queue Manager Automatically Send.";
             String messageText = loadEmailContent(emailContentFilePath) + "\n\n" + content;
             boolean sessionDebug = false;
 
             Properties props = System.getProperties();
-
-//            props.put("mail.smtp.starttls.enable", "true");
             props.put("mail.smtp.host", host);
             props.put("mail.smtp.port", "25");
-//            props.put("mail.smtp.auth", "true");
-//            props.put("mail.smtp.starttls.required", "true");
-
-            //            java.security.Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
             Session mailSession = Session.getDefaultInstance(props, null);
             mailSession.setDebug(sessionDebug);
 
@@ -87,19 +81,14 @@ public class EmailSend {
                 msg.setSubject(subject);
                 msg.setSentDate(new Date());
                 msg.setText(messageText);
-
-                //                transport = mailSession.getTransport("smtp");
-//                transport.connect(host, user, pass);
-
-//                transport.connect(host, user, pass);
                 Transport.send(msg);
-
-
             }
 
             System.out.println("message send successfully");
         }catch(Exception ex)  {
             System.out.println(ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+
         }
 
     }
