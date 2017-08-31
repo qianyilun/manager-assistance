@@ -1,5 +1,6 @@
 package com.allen.controller;
 
+import javax.swing.*;
 import java.awt.*;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -21,6 +22,7 @@ public class OpenURL {
                 desktop.browse(uri);
             } catch (Exception e) {
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, e.getMessage());
             }
         }
     }
@@ -30,6 +32,7 @@ public class OpenURL {
             openWebpage(url.toURI());
         } catch (URISyntaxException e) {
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 }
