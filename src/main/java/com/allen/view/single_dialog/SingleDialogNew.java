@@ -259,7 +259,7 @@ public class SingleDialogNew {
         treeView.setModel(new DefaultTreeModel(
                 new DefaultMutableTreeNode("Root") {
                     {
-                        String userObject = "<" + incident.getOBJECT_ID() + ">: within " + incident.hasMinutesLeft() + " minutes";
+                        String userObject = "<" + incident.getDESCRIPTION() + ">: within " + incident.hasMinutesLeft() + " minutes";
                         DefaultMutableTreeNode node1 = new DefaultMutableTreeNode(userObject);
                         node1.add(new DefaultMutableTreeNode("ID: " + incident.getOBJECT_ID()));
                         node1.add(new DefaultMutableTreeNode("Title: " + incident.getDESCRIPTION()));
