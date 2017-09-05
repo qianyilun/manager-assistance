@@ -20,6 +20,6 @@ public class JsonStringFormatter {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         JsonParser jp = new JsonParser();
         JsonElement je = jp.parse(uglyJsonString);
-        return gson.toJson(je);
+        return gson.toJson(je) + "\n";
     }
 }
