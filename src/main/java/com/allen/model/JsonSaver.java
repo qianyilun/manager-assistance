@@ -18,7 +18,7 @@ public class JsonSaver {
     public static void save(String formattedJson) {
         BufferedWriter writer = null;
         try {
-            writer = new BufferedWriter( new FileWriter(("log/history.json"), true));
+            writer = new BufferedWriter( new FileWriter(("history.json"), true));
             String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
             writer.write("//Captured by " + timeStamp + "\n" + formattedJson);
         }

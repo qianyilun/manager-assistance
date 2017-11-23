@@ -1,5 +1,6 @@
 package com.allen.controller;
 
+
 import com.sun.javafx.PlatformUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -80,8 +81,8 @@ public class ConnectionConfiguration {
             return "/chromedriver/Mac/chromedriver";
         }
         if (PlatformUtil.isWin7OrLater()) {
-//            return "src/chromedriver/Windows/chromedriver.exe";
-            return System.getProperty("user.dir")+"/chromedriver/Windows/chromedriver.exe";
+            return "src/chromedriver/Windows/chromedriver.exe";
+//            return System.getProperty("user.dir")+"/src/chromedriver/Windows/chromedriver.exe";
         }
         if (PlatformUtil.isLinux()) {
 //            return "./src/chromedriver/Linux64/chromedriver";
