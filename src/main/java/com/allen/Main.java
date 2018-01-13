@@ -25,6 +25,9 @@ public class Main {
         // NEEDS TO BE MODIFY TO BE "read from File"
         // OR GET queueID AUTOMATICALLY
         String queueID = "0090FAE68C221ED78F8482FB683BC0CB";
+
+        queueID = "0090FAE68DEE1ED7A1EFDF87824FE0CD"; // HANA
+
         //----------------------------------------------------
 
         start(queueID);
