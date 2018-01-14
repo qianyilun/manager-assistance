@@ -24,7 +24,7 @@ import java.util.TimerTask;
 public class QueueManager {
     private String queueID;
     private DATA[] incidentsInfo;
-    private ConnectionConfiguration cc;
+//    private ConnectionConfiguration cc;
     EmergeQueueList emergeQueueList;
 
 
@@ -40,7 +40,7 @@ public class QueueManager {
 
 
 
-
+/*
          ///////////////////////////////////////////////////////////////////
         // --------- Open Connection -----------
         cc = new ConnectionConfiguration(queueID);
@@ -51,6 +51,7 @@ public class QueueManager {
         incidentsInfo = parseJson(jsonSourceCode).getDATA();
 
          ////////////////////////////////////////////////////////////////////
+*/
 
 
 
@@ -62,14 +63,13 @@ public class QueueManager {
 
 
 
-/*
     // ***** below TEST ONLY ************** PREPARE TO DELETE ***********************
                                                                             //**
         // --------- Get 'incidents' in Test raw Json String ---------
-        jsonSourceCode = TestJSON.pageSource;
+//        jsonSourceCode = TestJSON.pageSource;
         incidentsInfo = parseJson(TestJSON.pageSource3).getDATA();
     // ***** above TEST ONLY ************** PREPARE TO DELETE ***********************
-*/
+
 
 
 
@@ -88,7 +88,7 @@ public class QueueManager {
         Arrays.sort(incidentsInfo);
 
         // --------- Save String to JSON file as the backup ----------
-        JsonSaver.save(JsonStringFormatter.prettyJsonFormat(jsonSourceCode));
+//        JsonSaver.save(JsonStringFormatter.prettyJsonFormat(jsonSourceCode));
 
         // --------- Manipulate the incident_info ---------
         for (DATA data : incidentsInfo) {
