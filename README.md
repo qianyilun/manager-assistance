@@ -4,6 +4,6 @@ SAP Manager Assistance is a desktop automation tool for the demonstration of exp
 
 All confidential information has been removed.
 
-Also, this is not an SAP paid product but a project that I tried to solve some redundancy issues in my working procedure. Please send me an email (qianyilun@gmail.com) if it is related to copyright or any other issues. I will delete this project immediately. 
+Also, this is not an SAP paid product but a project that I tried to solve some redundancy issues in my working procedure. Please send me an email (qianyilun@gmail.com) if you are interested in. 
 
 Author: @qianyilun
