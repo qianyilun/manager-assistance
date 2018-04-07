@@ -1,10 +1,9 @@
 # SAP Manager Assistance [Confidential Free]
 
-A desktop automation tool for reminding and demonstrating expired incident information in tree-list structure 
-and sending emails for product support managers.
+SAP Manager Assistance is a desktop automation tool for the demonstration of expired incident information in the tree-list structure. In the meantime, it helps product support managers to send emails. 
 
 All confidential information has been removed.
 
-In addition, this is not an SAP paid product but a project that I (qianyilun) tried to solve some redundancy issues in my working procedure. Please send me an email (qianyilun@gmail.com) if it is related to copyright or any other issues. I will delete this project immediately. 
+Also, this is not an SAP paid product but a project that I tried to solve some redundancy issues in my working procedure. Please send me an email (qianyilun@gmail.com) if you are interested in. 
 
 Author: @qianyilun
